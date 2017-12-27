@@ -8,9 +8,10 @@ $facebook-invert: findColorInvert($facebook);
 $google-plus: #DB4437;
 $google-plus-invert: findColorInvert($google-plus);
 
+$gold: #F1BF98;
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
-    white: ($white, $black),
+    "white": ($white, $black),
     black: ($black, $white),
     light: ($light, $light-invert),
     dark: ($dark, $dark-invert),
@@ -30,3 +31,18 @@ $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
 @import "../../node_modules/bulma/bulma.sass"; 
+
+
+.home-cover-hero{
+    background: url('../images/largeHero.jpg');
+    background-position: center;
+    background-size:cover; 
+}
+
+
+.title:hover{
+    color: $gold
+}
+.subtitle{
+    color: $white
+}

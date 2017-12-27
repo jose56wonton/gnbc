@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import Navbar from "./navBar";
+import HeroContent from './heroContent';
 import "../assets/styles.css";
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        <div className="hero is-fullheight ">
+      <div className="container is-widescreen">
+        <div className="hero is-fullheight home-cover-hero">
           <Navbar />
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
+          <HeroContent title={"GNBC"} subtitle={"We love jesus :D"}/>
         </div>
       </div>
     );

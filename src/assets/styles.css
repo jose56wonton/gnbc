@@ -6804,4 +6804,15 @@ label.panel-block {
   background-color: whitesmoke;
   padding: 3rem 1.5rem 6rem; }
 
+.home-cover-hero {
+  background: url("../images/largeHero.jpg");
+  background-position: center;
+  background-size: cover; }
+
+.title:hover {
+  color: #F1BF98; }
+
+.subtitle {
+  color: white; }
+
 /*# sourceMappingURL=styles.css.map */
