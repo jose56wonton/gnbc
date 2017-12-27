@@ -15,7 +15,7 @@ class Navbar extends Component {
   }
   render() {
     return (
-      <nav className="navbar is-fixed-top " aria-label="dropdown navigation">
+      <nav className="navbar is-fixed-top" aria-label="dropdown navigation">
         <div className="container">
           <div className="navbar-brand">
             <a className="navbar-item" href="https://bulma.io">

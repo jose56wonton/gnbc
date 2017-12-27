@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Home from "./components/home/home";
-import About from "./components/about/about";
-import Connect from "./components/connect/connect";
-import Resources from "./components/resources/resources";
-import Contact from "./components/contact/contact";
+import Home from './components/home';
+import About from './components/about';
+import Contact from './components/contact';
+import Connect from './components/connect';
+import Resources from './components/resources';
+import './assets/styles.css';
 import registerServiceWorker from "./utils/registerServiceWorker";
 
 ReactDOM.render(

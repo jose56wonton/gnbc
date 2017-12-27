@@ -5,11 +5,11 @@ import "../../assets/styles.css";
 class PanelOne extends Component {
   render() {
     return (
-      <div className="top-panel">
+      <div className="panel-one">
         <div className="container">       
           <div className="hero is-fullheight">
             <Navbar />
-            <HeroContent title={"GNBC"} subtitle={"We love jesus :D"} />
+            <HeroContent wrapperClasses="container has-text-centered" title={"GNBC"} subtitle={"We love jesus :D"} color="light"/>
           </div>
         </div>
       </div>
