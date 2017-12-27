@@ -5,10 +5,10 @@ class HeroContent extends Component {
     return (
       <div className="hero-body">
         <div className="container has-text-centered">
-          <h1 className="title is-white">
+          <h1 className="title light">
             {this.props.title}
           </h1>
-          <h2 className="subtitle is-secondary">
+          <h2 className="subtitle light">
             {this.props.subtitle}
           </h2>
         </div>
