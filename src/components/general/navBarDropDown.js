@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from 'react-router-dom';
 class NavBarDropDown extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +11,7 @@ class NavBarDropDown extends Component {
     else{
       return this.props.subText.map((item,i) =>{
         return(
-          <a key={i} className="navbar-item">{item}</a>
+          <Link key={i} className="navbar-item" to={this.props.subLinks[i]}>{item}</Link>
         );
       });
     }
@@ -19,8 +19,7 @@ class NavBarDropDown extends Component {
   render() {
     return (
       <div className="navbar-item has-dropdown is-hoverable">
-        <a className="navbar-link">{this.props.mainText}</a>
-
+        <Link  className="navbar-link" to={this.props.mainLink}>{this.props.mainText}</Link>
         <div className="navbar-dropdown">
           {this.renderSubs()}
         </div>

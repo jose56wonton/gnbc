@@ -43,10 +43,13 @@ class Navbar extends Component {
             <div className="navbar-end">
               <NavBarDropDown
                 mainText="About"
+                mainLink="/about"
                 subText={["Beliefs", "Values", "Staff"]}
+                subLinks={["about/beliefs","/about/values","/about/staff"]}
               />
               <NavBarDropDown
                 mainText="Connect"
+                mainLink="/connect"
                 subText={[
                   "Groups",
                   "Membership",
@@ -54,12 +57,15 @@ class Navbar extends Component {
                   "Volunteer",
                   "Counseling"
                 ]}
+                subLinks={["/connect/groups","/connect/membership","/connect/youth","/connect/volunteer","/connect/counseling"]}
               />
               <NavBarDropDown
                 mainText="Resources"
+                mainLink="/resources"
                 subText={["Sermons", "Articles"]}
+                subLinks={["/resources/sermons","/resources/articles"]}
               />
-              <NavBarButton mainText="Contact" />
+              <NavBarButton mainText="Contact" mainLink="contact" />
             </div>
           </div>
         </div>

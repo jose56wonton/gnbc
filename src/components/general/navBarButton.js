@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 class NavBarDropDown extends Component {
-
-  
   render() {
     return (
-      <a className="navbar-item">
-        {this.props.mainText}        
-      </a>
+      <Link className="navbar-item" to={this.props.mainLink}>
+        {this.props.mainText}
+      </Link>
     );
   }
 }
