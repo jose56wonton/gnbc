@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import Header from "../components/header";
-import "../styles/styles.scss";
+import "../styles/index.scss";
 import Footer from '../components/footer';
 import SideBar from '../components/sidebar';
 import React, { Component } from 'react';
@@ -30,7 +30,10 @@ class Layout extends Component {
       />
       <Header toggleBurger={this.toggleBurger} burgerActive={this.state.active} siteTitle={this.props.data.site.siteMetadata.title} />
       <SideBar toggleBurger={this.toggleBurger} burgerActive={this.state.active}/>
-      {this.props.children()}
+      <div className="container ">
+        {this.props.children()}
+      </div>
+      
       <Footer siteTitle={this.props.data.site.siteMetadata.title} />
     </div>
     );

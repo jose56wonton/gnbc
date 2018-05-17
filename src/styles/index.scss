@@ -1,10 +1,17 @@
 @import '../../node_modules/bulma/bulma.sass';
 
+$light: #E5F9E0;
+$dark: #465C69;
+$accent1: #0B4F6C;
+$accent2: #70798C;
+$accent3: #577590;
+
+
 body {
     margin: 0;
     padding: 0;
     font-family: 'Muli', Helvetica,arial;
-    color:$color-3;
+    color:$light;
     font-weight: bold;
 }
 @import './breakpoints.scss';
@@ -18,3 +25,7 @@ root {
 
 
 
+.container{
+    padding-top:10vh;
+    min-height: 90vh;
+}
