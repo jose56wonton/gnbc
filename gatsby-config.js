@@ -1,7 +1,7 @@
 module.exports = {
-  pathPrefix: '/rauch-photography',
+  //pathPrefix: '/gnbc',
   siteMetadata: {
-    title: "Zach Rauch"
+    title: "GNBC"
   },
   plugins: [
     `gatsby-transformer-sharp`,
