@@ -1,33 +1,74 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import Link from "gatsby-link";
 
-const Header = ({ siteTitle }) => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </div>
-)
+import React, { Component } from "react";
 
-export default Header
+class Header extends Component {
+  render() {
+    return (
+      <nav
+        className="navbar is-transparent is-fixed-top"
+        role="navigation"
+        aria-label="main navigation"
+      >
+        <div className="navbar-brand">
+          <Link
+            className="navbar-element strike"
+            activeClassName="strike-active"
+            exact 
+            to="/"
+          >
+            <span>Zach Rauch</span>
+          </Link>
+         
+          <button
+            className={`hamburger  hamburger--slider ${
+              this.props.burgerActive ? "is-invisible" : null
+            }`}
+            type="button"
+            aria-label="Menu"
+            aria-controls="navigation"
+            aria-expanded="true"
+            onClick={this.props.toggleBurger}
+          >
+            <span className="hamburger-box">
+              <span className="hamburger-inner" />
+            </span>
+          </button>
+        </div>
+       
+
+        <div className="navbar-menu">
+          <div className="navbar-end">
+            <Link
+              className="navbar-element strike"
+              activeClassName="strike-active"
+              to="/work"
+            >
+              <span>Work</span>
+            </Link>
+            <Link
+              className="navbar-element strike"
+              activeClassName="strike-active"
+              to="/contact"
+            >
+              <span>Contact</span>
+            </Link>
+          </div>
+        </div>
+      </nav>
+    );
+  }
+}
+
+export default Header;
+
+// <a
+//   role="button"
+//   className="navbar-burger"
+//   aria-label="menu"
+//   aria-expanded="false"
+// >
+//   <span aria-hidden="true" />
+//   <span aria-hidden="true" />
+//   <span aria-hidden="true" />
+// </a>
