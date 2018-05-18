@@ -1,11 +1,10 @@
-
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import Header from "../components/header";
 import "../styles/index.scss";
-import Footer from '../components/footer';
-import SideBar from '../components/sidebar';
-import React, { Component } from 'react';
+import Footer from "../components/footer";
+import SideBar from "../components/sidebar";
+import React, { Component } from "react";
 
 class Layout extends Component {
   constructor(props) {
@@ -19,23 +18,30 @@ class Layout extends Component {
   };
 
   render() {
+    
     return (
       <div className="min-size">
-      <Helmet
-        title={this.props.data.site.siteMetadata.title}
-        meta={[
-          { name: "description", content: "Sample" },
-          { name: "keywords", content: "sample, something" }
-        ]}
-      />
-      <Header toggleBurger={this.toggleBurger} isNavMenuActive={this.state.isNavMenuActive} siteTitle={this.props.data.site.siteMetadata.title} />
-      <SideBar toggleBurger={this.toggleBurger} isNavMenuActive={this.state.isNavMenuActive}/>
-      <div className="container ">
-        {this.props.children()}
+        <Helmet
+          title={this.props.data.site.siteMetadata.title}
+          meta={[
+            { name: "description", content: "Sample" },
+            { name: "keywords", content: "sample, something" }
+          ]}
+        />
+        <Header
+          toggleBurger={this.toggleBurger}
+          isNavMenuActive={this.state.isNavMenuActive}
+          siteTitle={this.props.data.site.siteMetadata.title}
+        />
+        <SideBar
+          toggleBurger={this.toggleBurger}
+          isNavMenuActive={this.state.isNavMenuActive}
+          navItems={this.props.data.allMarkdownRemark.edges}
+        />
+        <div className="container ">{this.props.children()}</div>
+
+        <Footer siteTitle={this.props.data.site.siteMetadata.title} />
       </div>
-      
-      <Footer siteTitle={this.props.data.site.siteMetadata.title} />
-    </div>
     );
   }
 }
@@ -53,5 +59,19 @@ export const query = graphql`
         title
       }
     }
+    allMarkdownRemark {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            path
+            type
+          }
+        }
+      }
+    }
   }
+
+ 
 `;
