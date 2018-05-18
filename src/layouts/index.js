@@ -11,11 +11,11 @@ class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false
+      isNavMenuActive: false
     };
   }
   toggleBurger = () => {
-    this.setState({ active: !this.state.active });
+    this.setState({ isNavMenuActive: !this.state.isNavMenuActive });
   };
 
   render() {
@@ -28,8 +28,8 @@ class Layout extends Component {
           { name: "keywords", content: "sample, something" }
         ]}
       />
-      <Header toggleBurger={this.toggleBurger} burgerActive={this.state.active} siteTitle={this.props.data.site.siteMetadata.title} />
-      <SideBar toggleBurger={this.toggleBurger} burgerActive={this.state.active}/>
+      <Header toggleBurger={this.toggleBurger} isNavMenuActive={this.state.isNavMenuActive} siteTitle={this.props.data.site.siteMetadata.title} />
+      <SideBar toggleBurger={this.toggleBurger} isNavMenuActive={this.state.isNavMenuActive}/>
       <div className="container ">
         {this.props.children()}
       </div>

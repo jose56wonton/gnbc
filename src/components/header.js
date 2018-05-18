@@ -19,10 +19,9 @@ class Header extends Component {
           >
             <span>Good News</span>
           </Link>
-
           <button
             className={`hamburger  hamburger--slider ${
-              this.props.burgerActive ? "is-invisible" : null
+              this.props.isNavMenuActive ? "is-invisible" : null
             }`}
             type="button"
             aria-label="Menu"
@@ -35,39 +34,7 @@ class Header extends Component {
             </span>
           </button>
         </div>
-
-        <div className="navbar-menu">
-          <div className="navbar-end">
-            <Link
-              className="navbar-element strike"
-              activeClassName="strike-active"
-              to="/about"
-            >
-              <span>About</span>
-            </Link>
-            <Link
-              className="navbar-element strike"
-              activeClassName="strike-active"
-              to="/ministry"
-            >
-              <span>Ministry</span>
-            </Link>
-            <Link
-              className="navbar-element strike"
-              activeClassName="strike-active"
-              to="/media"
-            >
-              <span>Media</span>
-            </Link>
-            <Link
-              className="navbar-element strike"
-              activeClassName="strike-active"
-              to="/contact"
-            >
-              <span>Contact</span>
-            </Link>
-          </div>
-        </div>
+        
       </nav>
     );
   }
