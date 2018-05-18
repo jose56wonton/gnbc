@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Link, { navigateTo } from "gatsby-link";
+
 import SideButton from "./sidebar/sideButton";
 import SideLink from "./sidebar/sideLink";
 class SideBar extends Component {
@@ -13,47 +13,40 @@ class SideBar extends Component {
   link = () => {
     this.props.toggleBurger();
   };
-  selectNavSection = (event) =>{
-    const {name} = event.currentTarget;    
-    if(this.state.activeNavSection === name){
-      this.setState({activeNavSection: ""})
-    }else{
-      this.setState({activeNavSection: name})
+  selectNavSection = event => {
+    const { name } = event.currentTarget;
+    if (this.state.activeNavSection === name) {
+      this.setState({ activeNavSection: "" });
+    } else {
+      this.setState({ activeNavSection: name });
     }
     console.log(this.state.activeNavSection);
-  }
-  destructureNavProps = (navItems) => {
-    return navItems.map((ele,i)=>{
+  };
+  destructureNavProps = navItems => {
+    return navItems.map((ele, i) => {
       return ele.node.frontmatter;
-    })
-  }
-  filterNavItems = (navItems,type)=>{
-    return navItems.filter(ele=>{
-      return ele.type === type
-    })
-  }
+    });
+  };
+  filterNavItems = (navItems, type) => {
+    return navItems.filter(ele => {
+      return ele.type === type;
+    });
+  };
   render() {
-    
     let subNavItems;
-    subNavItems = this.destructureNavProps(this.props.navItems);    
-    subNavItems = this.filterNavItems(subNavItems,this.state.activeNavSection)
-    console.log(subNavItems)
-    const subtabs = ["one", "two", "three"];
+    subNavItems = this.destructureNavProps(this.props.navItems);
+    subNavItems = this.filterNavItems(subNavItems, this.state.activeNavSection);
+    console.log(subNavItems);
     const x = subNavItems.map((ele, i) => {
       return (
-        <Link
-          className="sidebar-element sidebar-link strike"
-          activeClassName="strike-active"
-          onClick={this.link}
-          exact
-          to={"/" + ele.path}
+        <SideLink
           key={i * Math.random()}
-        >
-          <span>{ele.title}</span>
-        </Link>
+          action={this.link}
+          path={`/${ele.path}`}
+          text={ele.title}
+        />
       );
     });
-    //console.log(subtabs, x);
     return (
       <div
         className={`sidebar-menu ${
@@ -62,15 +55,7 @@ class SideBar extends Component {
       >
         <div className="sidebar-content columns">
           <div className="column">
-            <Link
-              className="sidebar-element sidebar-link strike"
-              activeClassName="strike-active"
-              onClick={this.link}
-              exact
-              to="/"
-            >
-              <span>Home</span>
-            </Link>
+            <SideLink action={this.link} path="/" text="Home" />
             <SideButton action={this.selectNavSection} text="About" />
             <SideButton action={this.selectNavSection} text="Ministry" />
             <SideButton action={this.selectNavSection} text="Media" />
