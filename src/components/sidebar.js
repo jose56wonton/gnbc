@@ -7,17 +7,19 @@ class SideBar extends Component {
   };
   render() {
     const subtabs = ["one", "two", "three"];
-    const x = subtabs.map(ele => {
-      <Link
+    const x = subtabs.map((ele,i) => {
+      return <Link
         className="sidebar-element strike"
         activeClassName="strike-active"
         onClick={this.link}
         exact
         to={"/"+ ele}
+        key={i * Math.random()}
       >
-        <span>ele</span>
+        <span>{ele}</span>
       </Link>;
     });
+    console.log(subtabs,x);
     return (
       <div
         className={`sidebar-menu ${
