@@ -14,12 +14,12 @@ class Header extends Component {
           <Link
             className="navbar-element strike"
             activeClassName="strike-active"
-            exact 
+            exact
             to="/"
           >
-            <span>Zach Rauch</span>
+            <span>Good News</span>
           </Link>
-         
+
           <button
             className={`hamburger  hamburger--slider ${
               this.props.burgerActive ? "is-invisible" : null
@@ -35,16 +35,29 @@ class Header extends Component {
             </span>
           </button>
         </div>
-       
 
         <div className="navbar-menu">
           <div className="navbar-end">
             <Link
               className="navbar-element strike"
               activeClassName="strike-active"
-              to="/work"
+              to="/about"
             >
-              <span>Work</span>
+              <span>About</span>
+            </Link>
+            <Link
+              className="navbar-element strike"
+              activeClassName="strike-active"
+              to="/ministry"
+            >
+              <span>Ministry</span>
+            </Link>
+            <Link
+              className="navbar-element strike"
+              activeClassName="strike-active"
+              to="/media"
+            >
+              <span>Media</span>
             </Link>
             <Link
               className="navbar-element strike"
