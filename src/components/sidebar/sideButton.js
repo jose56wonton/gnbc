@@ -3,7 +3,7 @@ import React from "react";
 export const SideButton = props => {
   return (
     <button
-      className="sidebar-element strike"
+      className="sidebar-element sidebar-button strike"
       activeClassName="strike-active"
       onClick={props.action}    
       name={props.text}  

@@ -42,7 +42,7 @@ class SideBar extends Component {
     const x = subNavItems.map((ele, i) => {
       return (
         <Link
-          className="sidebar-element strike"
+          className="sidebar-element sidebar-link strike"
           activeClassName="strike-active"
           onClick={this.link}
           exact
@@ -63,13 +63,13 @@ class SideBar extends Component {
         <div className="sidebar-content columns">
           <div className="column">
             <Link
-              className="sidebar-element strike"
+              className="sidebar-element sidebar-link strike"
               activeClassName="strike-active"
               onClick={this.link}
               exact
               to="/"
             >
-              <span>GNBC</span>
+              <span>Home</span>
             </Link>
             <SideButton action={this.selectNavSection} text="About" />
             <SideButton action={this.selectNavSection} text="Ministry" />
