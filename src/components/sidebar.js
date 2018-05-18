@@ -10,9 +10,11 @@ class SideBar extends Component {
       activeNavSection: ""
     };
   }
-  link = () => {
+ 
+  burgerOrLinkClick = () => {
+    this.setState({visbleSection:false})
     this.props.toggleBurger();
-  };
+  }
   selectNavSection = event => {
     const { name } = event.currentTarget;
     if (this.state.activeNavSection === name) {
@@ -37,8 +39,8 @@ class SideBar extends Component {
       return (
         <SideLink
           key={i * Math.random()}
-          action={this.link}
-          path={`/${ele.path}`}
+          action={this.burgerOrLinkClick}
+          path={`/${this.state.activeNavSection}/${ele.path}`}
           text={ele.title}
         />
       );
@@ -65,11 +67,11 @@ class SideBar extends Component {
       >
         <div className="sidebar-content columns">
           <div className={`column ${this.state.visbleSection === false ? "" : "is-hidden-mobile"}`}>
-            <SideLink action={this.link} path="/" text="Home" />
+            <SideLink action={this.burgerOrLinkClick} path="/" text="Home" />
             <SideButton action={this.selectNavSection} text="About" />
             <SideButton action={this.selectNavSection} text="Ministry" />
             <SideButton action={this.selectNavSection} text="Media" />
-            <SideLink action={this.link} path="/contact" text="Contact" />
+            <SideLink action={this.burgerOrLinkClick} path="/contact" text="Contact" />
           </div>
           <div className={`column ${this.state.visbleSection === true ? "" : "is-hidden-mobile"}`}>{subNavObjects}</div>
         </div>
@@ -81,7 +83,7 @@ class SideBar extends Component {
           aria-label="Menu"
           aria-controls="navigation"
           aria-expanded="true"
-          onClick={this.props.toggleBurger}
+          onClick={this.burgerOrLinkClick}
         >
           <span className="hamburger-box">
             <span className="hamburger-inner" />
