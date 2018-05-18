@@ -6,7 +6,7 @@ class SideBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activePrimaryNav: "",
+      visbleSection: false,
       activeNavSection: ""
     };
   }
@@ -16,28 +16,24 @@ class SideBar extends Component {
   selectNavSection = event => {
     const { name } = event.currentTarget;
     if (this.state.activeNavSection === name) {
-      this.setState({ activeNavSection: "" });
+      this.setState({ activeNavSection: "", visbleSection: false });
     } else {
-      this.setState({ activeNavSection: name });
+      this.setState({ activeNavSection: name , visbleSection: true});
     }
-    console.log(this.state.activeNavSection);
-  };
-  destructureNavProps = navItems => {
-    return navItems.map((ele, i) => {
+  };  
+  destructureNavProps = (subNavItems) => {
+    return subNavItems.map((ele, i) => {
       return ele.node.frontmatter;
     });
   };
-  filterNavItems = (navItems, type) => {
-    return navItems.filter(ele => {
-      return ele.type === type;
+  filterNavItems = (subNavItems) => {
+    return subNavItems.filter(ele => {
+      return ele.type === this.state.activeNavSection;
     });
   };
-  render() {
-    let subNavItems;
-    subNavItems = this.destructureNavProps(this.props.navItems);
-    subNavItems = this.filterNavItems(subNavItems, this.state.activeNavSection);
-    console.log(subNavItems);
-    const x = subNavItems.map((ele, i) => {
+  
+  getLinksFromData = (subNavItems) =>{
+    let asdf = subNavItems.map((ele, i) => {
       return (
         <SideLink
           key={i * Math.random()}
@@ -47,6 +43,20 @@ class SideBar extends Component {
         />
       );
     });
+    asdf.unshift(
+      <SideButton 
+        action={this.switchMenu} text="Back" classes="is-hidden-tablet" />
+    )
+    return asdf;
+  }
+  switchMenu = () => {
+    this.setState({visbleSection : !this.state.visbleSection})
+  }
+  render() {
+    let subNavItems = this.props.navItems;
+    subNavItems = this.destructureNavProps(subNavItems);
+    subNavItems = this.filterNavItems(subNavItems);
+    const subNavObjects = this.getLinksFromData(subNavItems);
     return (
       <div
         className={`sidebar-menu ${
@@ -54,14 +64,14 @@ class SideBar extends Component {
         }`}
       >
         <div className="sidebar-content columns">
-          <div className="column">
+          <div className={`column ${this.state.visbleSection === false ? "" : "is-hidden-mobile"}`}>
             <SideLink action={this.link} path="/" text="Home" />
             <SideButton action={this.selectNavSection} text="About" />
             <SideButton action={this.selectNavSection} text="Ministry" />
             <SideButton action={this.selectNavSection} text="Media" />
-            <SideButton action={this.selectNavSection} text="Contact" />
+            <SideLink action={this.link} path="/contact" text="Contact" />
           </div>
-          <div className="column">{x}</div>
+          <div className={`column ${this.state.visbleSection === true ? "" : "is-hidden-mobile"}`}>{subNavObjects}</div>
         </div>
         <button
           className={`hamburger  hamburger--slider ${

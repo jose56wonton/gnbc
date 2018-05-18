@@ -40,6 +40,7 @@
     overflow-y: hidden;
     /* Optional but highly reccomended: enables momentum scrolling on iOS */
     -webkit-overflow-scrolling: touch;
+    .invisible{display: none !important;}
     .sidebar-content {
         .column {
             display: flex;
