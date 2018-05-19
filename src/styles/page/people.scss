@@ -10,6 +10,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-bottom: .6rem;
 }
 
 .people-image-wrapper{
@@ -24,12 +25,11 @@
   height: 218px;
   transition: all 0.3s;  
   object-fit: cover;  
-  object-position: center center;  
+  object-position: center center; 
+  &.is-hovered{
+    transform: scale(1.1);
+  } 
 }
-.people-image:hover{ 
-  transform: scale(1.1);
-}
-
 
 .people-content{
   h1,h2{

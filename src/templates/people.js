@@ -1,52 +1,51 @@
-import React from "react";
 import Helmet from "react-helmet";
-import Img from "gatsby-image";
-export default function Template({ data }) {
-  const { frontmatter } = data.markdownRemark;
 
-  const staffElements = data.markdownRemark.frontmatter.people.map(
-    (person, i) => {
-      console.log(person.childMarkdownRemark.frontmatter.publicURL);
+import BigTile from "../components/people/bigTile";
+import React, { Component } from "react";
 
-      return (
-        <div className="column is-6-desktop is-12-mobile people-tile">
-          <div className="people-cover">
-            <div className="people-image-wrapper">
-              <Img
-                className={"people-image"}
-                sizes={
-                  person.childMarkdownRemark.frontmatter.image.childImageSharp
-                    .sizes
-                }
-              />
-            </div>
-          </div>
-          <div className="people-content">
-            <h2 className="title-2">
-              {person.childMarkdownRemark.frontmatter.title}
-            </h2>
-            <h1 className="title-1">
-              {person.childMarkdownRemark.frontmatter.name}
-            </h1>
-            <p className="text">
-              {person.childMarkdownRemark.frontmatter.description}
-            </p>
-          </div>
+class People extends Component {
+
+  mapPeopleToTiles = () => {
+    return this.props.data.markdownRemark.frontmatter.people.map(
+      (person, i) => {
+        const {
+          image,
+          title,
+          name,
+          description
+        } = person.childMarkdownRemark.frontmatter;
+        return (
+          <BigTile
+            key={image.childImageSharp.sizes.base64}
+            imageSizes={image.childImageSharp.sizes}
+            title={title}
+            name={name}
+            description={description}
+          />
+        );
+      }
+    );
+  }
+  render() {
+    
+    const { frontmatter } = this.props.data.markdownRemark;
+
+    const staffElements = this.mapPeopleToTiles(); 
+
+    return (
+      <div className="columns">
+        <div className="column is-offset-2 is-8">
+          <Helmet title={`${frontmatter.type} - ${frontmatter.title}`} />
+          <h1>{frontmatter.title}</h1>
+          <div className="columns  is-multiline">{staffElements}</div>
         </div>
-      );
-    }
-  );
-
-  return (
-    <div className="columns">
-      <div className="column is-offset-2 is-8">
-        <Helmet title={`${frontmatter.type} - ${frontmatter.title}`} />
-        <h1>{frontmatter.title}</h1>
-        <div className="columns  is-multiline">{staffElements}</div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+export default People;
+
 export const PeoplePathQuery = graphql`
   query PeoplePath($name: String!) {
     markdownRemark(frontmatter: { path: { eq: $name } }) {
