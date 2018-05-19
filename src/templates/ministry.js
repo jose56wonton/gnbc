@@ -17,7 +17,7 @@ export default function Template({ data }) {
     </div>
   );
 }
-export const pageQuery = graphql`
+export const MinistryPathQuery = graphql`
   query MinistryPath($name: String!) {
     markdownRemark(frontmatter: { path: { eq: $name } }) {
       html

@@ -48,7 +48,7 @@ class SideBar extends Component {
     });
     asdf.unshift(
       <SideButton 
-        action={this.switchMenu} text="Back" classes="is-hidden-tablet secondary " />
+        key={9000*Math.random()} action={this.switchMenu} text="Back" classes="is-hidden-tablet secondary " />
     )
     return asdf;
   }

@@ -18,6 +18,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               path
               type
               title
+              templateType
             }
           }
         }
@@ -27,11 +28,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     if (result.errors) {
       return Promise.reject(result.errors);
     }
-
+    
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       
       if (node.frontmatter.templateType === "Calendar"){
-        console.log("calendar")
         createPage({
           path: `/media/${node.frontmatter.path}/`,
           component: calendarTemplate,
@@ -43,7 +43,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       }
 
       if (node.frontmatter.templateType === "Detail"){
-        console.log("detail")
         createPage({
           path: `/about/${node.frontmatter.path}/`,
           component: detailTemplate,
@@ -55,7 +54,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       }
 
       if (node.frontmatter.type === "Ministry") {
-        console.log("ministry")
         createPage({
           path: `/ministry/${node.frontmatter.path}/`,
           component: ministryTemplate,
@@ -66,8 +64,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         });
       }
       
-      if (node.frontmatter.type === "People") {
-        console.log("people")
+      if (node.frontmatter.templateType === "People") {
         createPage({
           path: `/about/${node.frontmatter.path}`,
           component: peopleTemplate,
@@ -78,8 +75,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         });
       }
 
-      if (node.frontmatter.type === "Sermon") {
-        console.log("sermon")
+      if (node.frontmatter.templateType === "Sermon") {
         createPage({
           path: `/media/${node.frontmatter.path}`,
           component: sermonTemplate,

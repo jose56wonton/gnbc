@@ -17,7 +17,7 @@ export default function Template({ data }) {
     </div>
   );
 }
-export const pageQuery = graphql`
+export const CalendarPathQuery = graphql`
   query CalendarPath($name: String!) {
     markdownRemark(frontmatter: { path: { eq: $name } }) {
       html
