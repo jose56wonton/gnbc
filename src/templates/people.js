@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
-
+import Img from "gatsby-image";
 export default function Template({ data }) {
   const { frontmatter } = data.markdownRemark;
 
@@ -9,17 +9,28 @@ export default function Template({ data }) {
       console.log(person.childMarkdownRemark.frontmatter.publicURL);
 
       return (
-        <div className="column is-6-desktop is-12-mobile people-tile">          
+        <div className="column is-6-desktop is-12-mobile people-tile">
           <div className="people-cover">
-            <img
-              className="people-image"
-              src={person.childMarkdownRemark.frontmatter.image.publicURL}
-            />
+            <div className="people-image-wrapper">
+              <Img
+                className={"people-image"}
+                sizes={
+                  person.childMarkdownRemark.frontmatter.image.childImageSharp
+                    .sizes
+                }
+              />
+            </div>
           </div>
           <div className="people-content">
-            <h2 className="title-2">{person.childMarkdownRemark.frontmatter.title}</h2>
-            <h1 className="title-1">{person.childMarkdownRemark.frontmatter.name}</h1>
-            <p className="text">{person.childMarkdownRemark.frontmatter.description}</p>
+            <h2 className="title-2">
+              {person.childMarkdownRemark.frontmatter.title}
+            </h2>
+            <h1 className="title-1">
+              {person.childMarkdownRemark.frontmatter.name}
+            </h1>
+            <p className="text">
+              {person.childMarkdownRemark.frontmatter.description}
+            </p>
           </div>
         </div>
       );
@@ -53,7 +64,11 @@ export const PeoplePathQuery = graphql`
               email
               description
               image {
-                publicURL
+                childImageSharp {
+                  sizes {
+                    ...GatsbyImageSharpSizes
+                  }
+                }
               }
             }
           }
