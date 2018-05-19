@@ -12,7 +12,7 @@ class SideBar extends Component {
   }
  
   burgerOrLinkClick = () => {
-    this.setState({visbleSection:false})
+    this.setState({visbleSection:false,activeNavSection:""})
     this.props.toggleBurger();
   }
   selectNavSection = event => {
@@ -42,12 +42,13 @@ class SideBar extends Component {
           action={this.burgerOrLinkClick}
           path={`/${this.state.activeNavSection}/${ele.path}`}
           text={ele.title}
+          classes="secondary"
         />
       );
     });
     asdf.unshift(
       <SideButton 
-        action={this.switchMenu} text="Back" classes="is-hidden-tablet" />
+        action={this.switchMenu} text="Back" classes="is-hidden-tablet secondary " />
     )
     return asdf;
   }
@@ -61,24 +62,20 @@ class SideBar extends Component {
     const subNavObjects = this.getLinksFromData(subNavItems);
     return (
       <div
-        className={`sidebar-menu ${
-          this.props.isNavMenuActive ? "is-active" : ""
-        }`}
+        className={`sidebar-menu is-active`}
       >
         <div className="sidebar-content columns">
-          <div className={`column ${this.state.visbleSection === false ? "" : "is-hidden-mobile"}`}>
-            <SideLink action={this.burgerOrLinkClick} path="/" text="Home" />
-            <SideButton action={this.selectNavSection} text="About" />
-            <SideButton action={this.selectNavSection} text="Ministry" />
-            <SideButton action={this.selectNavSection} text="Media" />
-            <SideLink action={this.burgerOrLinkClick} path="/contact" text="Contact" />
+          <div className={`column animated fadeInRight is-offset-1 is-narrow ${this.state.visbleSection === false ? "" : "is-hidden-mobile"}`}>
+            <SideLink action={this.burgerOrLinkClick} path="/" text="Home" classes="primary" />
+            <SideButton action={this.selectNavSection} text="About" classes="primary" />
+            <SideButton action={this.selectNavSection} text="Ministry" classes="primary" />
+            <SideButton action={this.selectNavSection} text="Media" classes="primary" />
+            <SideLink action={this.burgerOrLinkClick} path="/contact" text="Contact" classes="primary" />
           </div>
-          <div className={`column ${this.state.visbleSection === true ? "" : "is-hidden-mobile"}`}>{subNavObjects}</div>
+          <div className={`column animated fadeInRight is-offset-1 is-narrow ${this.state.visbleSection === true ? "" : "is-hidden-mobile"}`}>{subNavObjects}</div>
         </div>
         <button
-          className={`hamburger  hamburger--slider ${
-            this.props.isNavMenuActive ? "is-active" : "is-invisible"
-          }`}
+          className={`hamburger  hamburger--slider is-active`}
           type="button"
           aria-label="Menu"
           aria-controls="navigation"

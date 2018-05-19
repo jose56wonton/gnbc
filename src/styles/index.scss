@@ -1,5 +1,5 @@
 @import '../../node_modules/bulma/bulma.sass';
-
+@import '../../node_modules/animate.css/animate.min.css';
 $light: #E5F9E0;
 $dark: #465C69;
 $accent1: #0B4F6C;
@@ -19,6 +19,7 @@ root {
     font-size: 10px;
     overflow-y: auto;
 }
+
 @import './hover.scss';
 @import './hamburger.scss';
 @import'./layout.scss';

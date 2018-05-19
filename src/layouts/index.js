@@ -33,11 +33,12 @@ class Layout extends Component {
           isNavMenuActive={this.state.isNavMenuActive}
           siteTitle={this.props.data.site.siteMetadata.title}
         />
-        <SideBar
+        {this.state.isNavMenuActive ? <SideBar
           toggleBurger={this.toggleBurger}
           isNavMenuActive={this.state.isNavMenuActive}
           navItems={this.props.data.allMarkdownRemark.edges}
-        />
+        /> : null}
+        
         <div className="container ">{this.props.children()}</div>
 
         <Footer siteTitle={this.props.data.site.siteMetadata.title} />
@@ -56,7 +57,7 @@ export const query = graphql`
   query SiteTitleQuery {
     site {
       siteMetadata {
-        title
+        title        
       }
     }
     allMarkdownRemark {

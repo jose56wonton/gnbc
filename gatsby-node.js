@@ -29,7 +29,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
            
       if (node.frontmatter.type === "About"){
-        console.log(node.frontmatter.path);
         createPage({
           path: `/about/${node.frontmatter.path}/`,
           component: aboutTemplate,
@@ -41,7 +40,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       }
 
       if (node.frontmatter.type === "Ministry") {
-        console.log(node.frontmatter.path);
         createPage({
           path: `/ministry/${node.frontmatter.path}/`,
           component: ministryTemplate,
@@ -53,7 +51,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       }
       
       if (node.frontmatter.type === "Media") {
-        console.log(node.frontmatter.path);
         createPage({
           path: `/media/${node.frontmatter.path}`,
           component: mediaTemplate,

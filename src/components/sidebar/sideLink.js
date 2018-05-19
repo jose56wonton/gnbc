@@ -3,7 +3,8 @@ import Link from "gatsby-link";
 export const SideLink = props => {
   return (
     <Link
-      className="sidebar-element sidebar-link strike"
+      className={`sidebar-element sidebar-link strike ${props.classes}`}
+
       activeClassName="strike-active"
       onClick={props.action}
       exact
