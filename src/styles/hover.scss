@@ -22,7 +22,7 @@
   width: 0%;
   height: 1px;
   top: 55%;
-  background: $accent2;
+  background: $green;
 }
 .strike-active span:before , .strike-active span:after {
   width: 100%;
@@ -32,11 +32,11 @@
 }
 .strike span:after {
   right: 2.5px;
-  background: $accent2;
+  background: $green;
   transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 .strike-hover span:before{
-  background: $accent2;
+  background: $green;
   width: 100%;
   transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -46,7 +46,7 @@
   transition: 0s;
 }
 .strike  span:hover:before {
-  background: $accent2;
+  background: $green;
   width: 100%;
   transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -80,7 +80,7 @@
   width: 0%;
   height: 2px;
   top: 100%;
-  background: $accent2;
+  background: $green;
 }
 .underline-active span:before , .underline-active span:after {
   width: 100%;
@@ -90,11 +90,11 @@
 }
 .underline span:after {
   right: 2.5px;
-  background: $accent2;
+  background: $green;
   transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 .underline  span:hover:before {
-  background: $accent2;
+  background: $green;
   width: 100%;
   transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -130,9 +130,8 @@
 }
 
 .underline-inverse span{
-  position:absolute;
- 
-  background: $accent2;
+  position:absolute; 
+  background: $green;
   top: 100%;
   left:0;
   right:0;
@@ -161,3 +160,17 @@
     right:0%;
   }
 }
+
+
+.fade{
+  color: $dark;
+  transition: color .3s ease;
+}
+.fade:hover{
+  color: $green !important;
+}
+.fade-active{
+  color: $green !important;
+}
+
+

@@ -1,17 +1,30 @@
 @import '../../node_modules/bulma/bulma.sass';
 @import '../../node_modules/animate.css/animate.min.css';
-$light: #E5F9E0;
-$dark: #465C69;
-$accent1: #0B4F6C;
-$accent2: #70798C;
-$accent3: #577590;
 
+@import url('https://fonts.googleapis.com/css?family=Hind+Guntur|Kavivanar');
+
+h1{
+   font-family: 'Kavivanar', cursive;
+   font-weight: 600; 
+}
+p{
+    font-family: 'Hind Guntur', sans-serif;
+    font-weight: 300;
+}
+
+
+
+$light: #E5F9E0;
+$dark: #3A4C56;
+$grey: #6B7F82;
+$purple: #706677;
+$green: #397367;
+$accent4: #638FA1;
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Muli', Helvetica,arial;
-    color:$light;
+    color:$dark;
     font-weight: bold;
 }
 @import './breakpoints.scss';
@@ -20,10 +33,9 @@ root {
     overflow-y: auto;
 }
 
-@import './hover.scss';
 @import './hamburger.scss';
 @import'./layout.scss';
-
+@import './hover.scss';
 
 
 .container{

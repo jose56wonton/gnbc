@@ -3,12 +3,12 @@ import React from "react";
 export const SideButton = props => {
   return (
     <button
-      className={`sidebar-element sidebar-button strike ${props.classes}`}
-      activeClassName="strike-active"
+      className={`sidebar-element sidebar-button fade ${props.classes}`}
+      activeClassName="fade-active"
       onClick={props.action}    
       name={props.text}  
     >
-      <span name={props.text}>{props.text}</span>
+      {props.text}
     </button>
   );
 };

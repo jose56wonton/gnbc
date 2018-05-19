@@ -3,14 +3,14 @@ import Link from "gatsby-link";
 export const SideLink = props => {
   return (
     <Link
-      className={`sidebar-element sidebar-link strike ${props.classes}`}
+      className={`sidebar-element sidebar-link fade ${props.classes}`}
 
-      activeClassName="strike-active"
+      activeClassName="fade-active"
       onClick={props.action}
       exact
       to={props.path}
     >
-      <span>{props.text}</span>
+      {props.text}
     </Link>
   );
 };

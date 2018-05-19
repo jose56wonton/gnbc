@@ -12,12 +12,12 @@ class Header extends Component {
       >
         <div className="navbar-brand">
           <Link
-            className="navbar-element strike"
-            activeClassName="strike-active"
+            className="navbar-element fade"
+            activeClassName="fade-active"
             exact
             to="/"
           >
-            <span>Good News</span>
+            Good News
           </Link>
           <button
             className={`hamburger  hamburger--slider ${
