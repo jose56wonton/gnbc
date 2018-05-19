@@ -28,18 +28,20 @@ body {
     color:$dark;
     font-weight: bold;
 }
-@import './breakpoints.scss';
+@import './utils/breakpoints.scss';
 root {
     font-size: 10px;
     overflow-y: auto;
 }
 
-@import './hamburger.scss';
-@import'./layout.scss';
-@import './hover.scss';
+@import './utils/hamburger.scss';
+@import'./layout/layout.scss';
+@import './utils/hover.scss';
 
 
 .container{
     padding-top:10vh;
     min-height: 90vh;
 }
+
+@import './page/people.scss';
