@@ -3,9 +3,11 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
   const { createPage } = boundActionCreators;
 
-  const aboutTemplate = path.resolve(`src/templates/about.js`);
+  const calendarTemplate = path.resolve(`src/templates/calendar.js`);
+  const detailTemplate = path.resolve(`src/templates/detail.js`);
   const ministryTemplate = path.resolve(`src/templates/ministry.js`);
-  const mediaTemplate = path.resolve("src/templates/media.js");
+  const peopleTemplate = path.resolve(`src/templates/people.js`);
+  const sermonTemplate = path.resolve("src/templates/sermon.js");
 
   graphql(`
     {
@@ -27,11 +29,24 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     }
 
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-           
-      if (node.frontmatter.type === "About"){
+      
+      if (node.frontmatter.templateType === "Calendar"){
+        console.log("calendar")
+        createPage({
+          path: `/media/${node.frontmatter.path}/`,
+          component: calendarTemplate,
+          context: {
+            name: node.frontmatter.path
+          },
+          title: node.frontmatter.title
+        });
+      }
+
+      if (node.frontmatter.templateType === "Detail"){
+        console.log("detail")
         createPage({
           path: `/about/${node.frontmatter.path}/`,
-          component: aboutTemplate,
+          component: detailTemplate,
           context: {
             name: node.frontmatter.path
           },
@@ -40,6 +55,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       }
 
       if (node.frontmatter.type === "Ministry") {
+        console.log("ministry")
         createPage({
           path: `/ministry/${node.frontmatter.path}/`,
           component: ministryTemplate,
@@ -50,10 +66,23 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         });
       }
       
-      if (node.frontmatter.type === "Media") {
+      if (node.frontmatter.type === "People") {
+        console.log("people")
+        createPage({
+          path: `/about/${node.frontmatter.path}`,
+          component: peopleTemplate,
+          context: {
+            name: node.frontmatter.path
+          },
+          title: node.frontmatter.title
+        });
+      }
+
+      if (node.frontmatter.type === "Sermon") {
+        console.log("sermon")
         createPage({
           path: `/media/${node.frontmatter.path}`,
-          component: mediaTemplate,
+          component: sermonTemplate,
           context: {
             name: node.frontmatter.path
           },

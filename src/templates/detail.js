@@ -6,7 +6,7 @@ export default function Template({ data }) {
   const {frontmatter} = data.markdownRemark;
   return (
     <div>
-      <Helmet title={`Ministry - ${frontmatter.title}`} />
+      <Helmet title={`About - ${frontmatter.title}`} />
       <div className="blog-post">
         <h1>{frontmatter.title}</h1>
         <div
@@ -18,7 +18,7 @@ export default function Template({ data }) {
   );
 }
 export const pageQuery = graphql`
-  query MinistryPath($name: String!) {
+  query DetailPath($name: String!) {
     markdownRemark(frontmatter: { path: { eq: $name } }) {
       html
       frontmatter {
