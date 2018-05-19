@@ -53,7 +53,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         });
       }
 
-      if (node.frontmatter.type === "Ministry") {
+      if (node.frontmatter.templateType === "Ministry") {
         createPage({
           path: `/ministry/${node.frontmatter.path}/`,
           component: ministryTemplate,
