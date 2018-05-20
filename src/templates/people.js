@@ -1,6 +1,6 @@
 import Helmet from "react-helmet";
 
-import BigTile from "../components/people/bigTile";
+import Tile from "../components/people/tile";
 import React, { Component } from "react";
 
 class People extends Component {
@@ -15,7 +15,7 @@ class People extends Component {
           description
         } = person.childMarkdownRemark.frontmatter;
         return (
-          <BigTile
+          <Tile
             key={image.childImageSharp.sizes.base64}
             imageSizes={image.childImageSharp.sizes}
             title={title}

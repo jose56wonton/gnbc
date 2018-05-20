@@ -1,7 +1,7 @@
 import Img from "gatsby-image";
 import React, { Component } from 'react';
 
-class BigTile extends Component {
+class Tile extends Component {
   constructor(props){
     super(props);
     this.state = { 
@@ -50,4 +50,4 @@ class BigTile extends Component {
   }
 }
 
-export default BigTile;
+export default Tile;
