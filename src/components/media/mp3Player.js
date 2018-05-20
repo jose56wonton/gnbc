@@ -3,17 +3,20 @@ import ReactPlayer from "react-player";
 import Moment from "moment";
 import Slider from "react-rangeslider";
 
-import asdf from './asdf';
+import asdf from "./asdf";
 class MP3Player extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isPlaying: false,
-      totalTime: 0,
-      loadedTime: 0,
-      playedTime: 0,
+      totalTime: this.secondsToTimeFormat(0),
+      loadedTime: this.secondsToTimeFormat(0),
+      playedTime: this.secondsToTimeFormat(0),
+      volumeProgress: 0.5,
       loadedProgress: 0,
-      playedProgress: 0
+      playedProgress: 0,
+      volumeProgressCss: {},
+      audioProgressCss: {}
     };
   }
   toggleIsPlaying = () => {
@@ -29,18 +32,66 @@ class MP3Player extends Component {
       playedProgress: event.played
     });
   };
+
   updateDuration = event => {
-    this.setState({ totalTime: this.secondsToTimeFormat(event),totalTimeRaw:event });
+    this.setState({
+      totalTime: this.secondsToTimeFormat(event),
+      totalTimeRaw: event
+    });
   };
   setProgress = event => {
-    console.log(this);
-    this.setState({      
-      playedProgress: event.target.value,
-      playedTime: this.secondsToTimeFormat(event.target.value * this.state.totalTimeRaw),
-    })
-    this.player.seekTo(event.target.value * this.state.totalTimeRaw)
-  }
-
+    this.setState(
+      {
+        playedProgress: event.target.value,
+        playedTime: this.secondsToTimeFormat(
+          event.target.value * this.state.totalTimeRaw
+        )
+      },
+      () => {
+        console.log("asdf");
+        this.updateProgressCss();
+      }
+    );
+    this.player.seekTo(event.target.value * this.state.totalTimeRaw);
+  };
+  updateProgressCss = () => {
+    this.setState({
+      audioProgressCss: {
+        backgroundImage: `-webkit-gradient(linear,left top,right top,color-stop(${
+          this.state.playedProgress
+        }, #6F9990),color-stop(${this.state.playedProgress},#C5C5C5))`
+      }
+    });
+  };
+  updateVolume = event => {
+    this.setState(
+      {
+        volumeProgress: parseFloat(event.target.value)
+      },
+      () => {
+        this.updateVolumeCss();
+      }
+    );
+  };
+  updateVolumeCss = () => {
+    let volumeFillCover = "";
+    if (this.state.volumeProgress > 0.5) {
+      volumeFillCover = "#6F9990";
+    }
+    if (this.state.volumeProgress > 0) {
+      volumeFillCover = "#334642";
+    }
+    if (this.state.volumeProgress == 0) {
+      volumeFillCover = "#0B0E0E";
+    }
+    this.setState({
+      volumeProgressCss: {
+        backgroundImage: `-webkit-gradient(linear,left top,right top,color-stop(${
+          this.state.volumeProgress
+        }, #6F9990),color-stop(${this.state.volumeProgress},#C5C5C5))`
+      }
+    });
+  };
 
   secondsToTimeFormat = secs => {
     const moment = Moment(secs, "X");
@@ -48,11 +99,11 @@ class MP3Player extends Component {
   };
   ref = player => {
     this.player = player;
-  }
+  };
   render() {
     return (
       <div>
-        <div  className="audio green-audio-player">
+        <div className="audio green-audio-player">
           <div className="play-pause-btn" onClick={this.toggleIsPlaying}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -75,9 +126,20 @@ class MP3Player extends Component {
           </div>
 
           <div className="controls">
-            <span className="current-time">{this.state.playedTime}</span>
-            <input class="slider" data-direction="horizontal" step=".001" min="0" max="1" value={this.state.playedProgress} onChange={this.setProgress} type="range"/>
-            <span className="total-time">{this.state.totalTime}</span>
+              <span className="current-time">{this.state.playedTime}</span>
+            
+              <input
+                style={this.state.audioProgressCss}
+                data-direction="horizontal"
+                step=".001"
+                min="0"
+                max="1"
+                value={this.state.playedProgress}
+                onChange={this.setProgress}
+                type="range"
+              />
+              <span className="total-time">{this.state.totalTime}</span>
+            
           </div>
 
           <div className="volume">
@@ -89,34 +151,36 @@ class MP3Player extends Component {
                 viewBox="0 0 24 24"
               >
                 <path
-                  fill="#566574"
+                  fill="#3A4C56"
                   fill-rule="evenodd"
                   d="M14.667 0v2.747c3.853 1.146 6.666 4.72 6.666 8.946 0 4.227-2.813 7.787-6.666 8.934v2.76C20 22.173 24 17.4 24 11.693 24 5.987 20 1.213 14.667 0zM18 11.693c0-2.36-1.333-4.386-3.333-5.373v10.707c2-.947 3.333-2.987 3.333-5.334zm-18-4v8h5.333L12 22.36V1.027L5.333 7.693H0z"
                   id="speaker"
                 />
               </svg>
             </div>
-            <div className="volume-controls hidden">
-              <div className="slider" data-direction="vertical">
-                <div className="progress">
-                  <div
-                    className="pin"
-                    id="volume-pin"
-                    data-method="changeVolume"
-                  />
-                </div>
-              </div>
+            <div className="volume-slider-wrapper">
+              <input
+                className="volume-slider"
+                data-direction="vertical"
+                step=".1"
+                min="0"
+                max="1"
+                value={this.state.volumeProgress}
+                style={this.state.volumeProgressCss}
+                onChange={this.updateVolume}
+                type="range"
+              />
             </div>
           </div>
         </div>
-        
-   
-        
+
         <ReactPlayer
+          className="player"
           url={this.props.url}
           playing={this.state.isPlaying}
           onProgress={this.updateProgress}
           onDuration={this.updateDuration}
+          volume={this.state.volumeProgress}
           ref={this.ref}
         />
       </div>
@@ -125,3 +189,5 @@ class MP3Player extends Component {
 }
 
 export default MP3Player;
+
+////<input className="slider" data-direction="horizontal" step=".001" min="0" max="1" value={this.state.playedProgress} onChange={this.setProgress} type="range"/>
