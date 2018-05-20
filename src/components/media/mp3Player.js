@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import ReactPlayer from "react-player";
-import Moment from 'moment';
+import Moment from "moment";
+import Slider from "react-rangeslider";
+
+import asdf from './asdf';
 class MP3Player extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +20,6 @@ class MP3Player extends Component {
     this.setState({
       isPlaying: !this.state.isPlaying
     });
-    
   };
   updateProgress = event => {
     this.setState({
@@ -25,22 +27,32 @@ class MP3Player extends Component {
       playedTime: this.secondsToTimeFormat(event.playedSeconds),
       loadedProgress: event.loaded,
       playedProgress: event.played
-    })
+    });
   };
   updateDuration = event => {
-    console.log(event)
-    this.setState({totalTime: this.secondsToTimeFormat(event)})
+    this.setState({ totalTime: this.secondsToTimeFormat(event),totalTimeRaw:event });
+  };
+  setProgress = event => {
+    console.log(this);
+    this.setState({      
+      playedProgress: event.target.value,
+      playedTime: this.secondsToTimeFormat(event.target.value * this.state.totalTimeRaw),
+    })
+    this.player.seekTo(event.target.value * this.state.totalTimeRaw)
   }
+
+
   secondsToTimeFormat = secs => {
     const moment = Moment(secs, "X");
-    console.log(moment);
-    return moment.format("mm:ss")
+    return moment.format("mm:ss");
+  };
+  ref = player => {
+    this.player = player;
   }
   render() {
-    console.log(this.props.url);
     return (
       <div>
-        <div className="audio green-audio-player">
+        <div  className="audio green-audio-player">
           <div className="play-pause-btn" onClick={this.toggleIsPlaying}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +62,7 @@ class MP3Player extends Component {
             >
               <path
                 fill="#566574"
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d={
                   this.state.isPlaying
                     ? "M0 0h6v24H0zM12 0h6v24h-6z"
@@ -64,11 +76,7 @@ class MP3Player extends Component {
 
           <div className="controls">
             <span className="current-time">{this.state.playedTime}</span>
-            <div className="slider" data-direction="horizontal">
-              <div className="progress">
-                <div className="pin" id="progress-pin" data-method="rewind" />
-              </div>
-            </div>
+            <input class="slider" data-direction="horizontal" step=".001" min="0" max="1" value={this.state.playedProgress} onChange={this.setProgress} type="range"/>
             <span className="total-time">{this.state.totalTime}</span>
           </div>
 
@@ -101,11 +109,15 @@ class MP3Player extends Component {
             </div>
           </div>
         </div>
+        
+   
+        
         <ReactPlayer
           url={this.props.url}
           playing={this.state.isPlaying}
           onProgress={this.updateProgress}
           onDuration={this.updateDuration}
+          ref={this.ref}
         />
       </div>
     );

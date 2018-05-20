@@ -21,7 +21,8 @@
     "hamburgers": "^0.9.3",
     "moment": "^2.22.1",
     "react-helmet": "^5.2.0",
-    "react-player": "^1.6.0"
+    "react-player": "^1.6.0",
+    "react-rangeslider": "^2.2.0"
   },
   "keywords": [
     "gatsby"
