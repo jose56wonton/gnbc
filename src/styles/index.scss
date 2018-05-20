@@ -27,6 +27,7 @@ body {
     padding: 0;
     color:$dark;
     font-weight: bold;
+    box-sizing: border-box;
 }
 @import './utils/breakpoints.scss';
 root {
@@ -50,4 +51,4 @@ root {
 @import './page/detail.scss';
 @import './page/media.scss';
 @import './page/ministry.scss';
-
+@import './page/message.scss';

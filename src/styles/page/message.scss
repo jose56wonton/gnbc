@@ -1,0 +1,47 @@
+.message-intro {
+    margin: 1rem 0;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    .message-date {
+        font-size: .8rem;
+        text-align: center;
+    }
+    .message-title {
+        font-size: 3rem;
+        text-align: center;
+    }
+    .message-details {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        p {
+            span {
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.message-content {
+    margin: 1rem 0;
+    p{
+      padding-top: 1rem;
+      font-size: 1.4
+    }
+    h2{
+      padding-top: 1.8rem;
+      font-weight: 600;
+      font-size: 2.2rem;
+    }
+    h1{
+      padding-top: 2rem;
+      font-size: 2.6rem;
+      font-weight: 600;
+    }
+    ul{
+      padding-left: 3rem;
+    }
+    
+}

@@ -4,9 +4,10 @@ import MessageTile from "../components/media/messageTile";
 class Media extends Component {
   mapMessagesToTiles = () => {
     return this.props.data.allFile.edges.map((messageNode, i) => {
+
       const message = messageNode.node.childMarkdownRemark;
-      console.log(message);
-      const { title, speaker, date } = message.frontmatter;      
+      const { title, speaker, date } = message.frontmatter; 
+
       return (
         <MessageTile
           key={i * Math.random() * 12}
@@ -19,10 +20,10 @@ class Media extends Component {
     });
   };
   render() {
-    console.log(this.props.data);
 
     const messageElements = this.mapMessagesToTiles();
     const { frontmatter } = this.props.data.markdownRemark;
+    
     return (
       <div>
         <Helmet title={`Media`} />
