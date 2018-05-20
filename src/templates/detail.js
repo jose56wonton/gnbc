@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Tile from "../components/detail/tile";
 class Detail extends Component {
   mapDetailsToTiles = () => {
-    console.log(this.props.data.markdownRemark.frontmatter)
+    console.log(this.props.data.markdownRemark.frontmatter);
     return this.props.data.markdownRemark.frontmatter.tiles.map((tile, i) => {
       console.log(tile);
       const {
@@ -14,7 +14,7 @@ class Detail extends Component {
       } = tile.childMarkdownRemark.frontmatter;
       return (
         <Tile
-          key={i * Math.random()*100}
+          key={i * Math.random() * 100}
           leftTitle={leftTitle}
           rightTitle={rightTitle}
           rightDescription={rightDescription}
@@ -27,12 +27,10 @@ class Detail extends Component {
     const { frontmatter } = this.props.data.markdownRemark;
     const detailElements = this.mapDetailsToTiles();
     return (
-      <div className="columns">
-        <div className="column is-offset-2 is-8">
-          <Helmet title={`About - ${frontmatter.title}`} />
-          <h1 className="title-1">{frontmatter.title}</h1>
-          <div className="columns  is-multiline">{detailElements}</div>
-        </div>
+      <div>
+        <Helmet title={`About - ${frontmatter.title}`} />
+        <h1 className="title-1">{frontmatter.title}</h1>
+        <div className="columns  is-multiline">{detailElements}</div>
       </div>
     );
   }

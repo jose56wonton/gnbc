@@ -18,7 +18,6 @@ class Layout extends Component {
   };
 
   render() {
-    
     return (
       <div className="min-size">
         <Helmet
@@ -33,14 +32,21 @@ class Layout extends Component {
           isNavMenuActive={this.state.isNavMenuActive}
           siteTitle={this.props.data.site.siteMetadata.title}
         />
-        {this.state.isNavMenuActive ? <SideBar
-          toggleBurger={this.toggleBurger}
-          isNavMenuActive={this.state.isNavMenuActive}
-          navItems={this.props.data.allMarkdownRemark.edges}
-        /> : null}
-        
-        <div className="container ">{this.props.children()}</div>
+        {this.state.isNavMenuActive ? (
+          <SideBar
+            toggleBurger={this.toggleBurger}
+            isNavMenuActive={this.state.isNavMenuActive}
+            navItems={this.props.data.allMarkdownRemark.edges}
+          />
+        ) : null}
 
+        <div className="container ">
+          <div className="columns">
+            <div className="column is-offset-2 is-8">
+              {this.props.children()}
+            </div>
+          </div>
+        </div>
         <Footer siteTitle={this.props.data.site.siteMetadata.title} />
       </div>
     );
@@ -57,7 +63,7 @@ export const query = graphql`
   query SiteTitleQuery {
     site {
       siteMetadata {
-        title        
+        title
       }
     }
     allMarkdownRemark {
@@ -72,5 +78,5 @@ export const query = graphql`
         }
       }
     }
-  } 
+  }
 `;

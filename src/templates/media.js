@@ -1,24 +1,32 @@
-import React from "react";
 import Helmet from "react-helmet";
+import React, { Component } from "react";
 
-
-export default function Template({ data }) {
-  const {frontmatter} = data.markdownRemark;
-  return (
-    <div>
-      <Helmet title={`Media - ${frontmatter.title}`} />
-      <div className="blog-post">
-        <h1>{frontmatter.title}</h1>
-        <div
-          className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
-        />
+class Media extends Component {
+  render() {
+    console.log(this.props.data)
+    const { frontmatter } = this.props.data.markdownRemark;
+    return (
+      <div>
+        <Helmet title={`Media`} />
+        <div>
+          <h1>{frontmatter.title}</h1>          
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+export default Media;
+
 export const MediaPathQuery = graphql`
   query MediaPath($name: String!) {
+    allFile(filter: { extension: { eq: "mp3" } }) {
+      edges {
+        node {
+          publicURL
+        }
+      }
+    }
     markdownRemark(frontmatter: { path: { eq: $name } }) {
       html
       frontmatter {
@@ -28,5 +36,4 @@ export const MediaPathQuery = graphql`
       }
     }
   }
-`
-;
+`;
