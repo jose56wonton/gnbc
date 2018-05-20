@@ -1,7 +1,7 @@
 import Helmet from "react-helmet";
 import React, { Component } from "react";
 import Img from "gatsby-image";
-
+import Tile from '../components/ministry/tile';
 class Ministry extends Component {
   mapMinistryToTiles = () => {
     return this.props.data.markdownRemark.frontmatter.tiles.map((tile, i) => {
@@ -12,20 +12,12 @@ class Ministry extends Component {
         description
       } = tile.childMarkdownRemark.frontmatter;
       return (
-        <div className="column is-12 ministry-tile">
-          <div className="columns">
-            <div className="column ministry-content">
-              <h1 className="title-1">{title}</h1>
-              <p className="text">{description}</p>
-            </div>
-            <div className="column ministry-image-wrapper">
-              <Img
-                className={`ministry-image`}
-                sizes={image.childImageSharp.sizes}
-              />
-            </div>
-          </div>
-        </div>
+        <Tile 
+        key={image.childImageSharp.sizes.base64}
+        imageSizes={image.childImageSharp.sizes}
+        title={title}
+        description={description}
+        />
       );
     });
   };

@@ -3,7 +3,7 @@
   height: 60vh;
   padding:20px;
 }
-.people-cover{
+.ministry-cover{
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -12,16 +12,15 @@
   margin-bottom: .6rem;
 }
 
-.people-image-wrapper{
-  height: 218px;
-  width: 218px;
+.ministry-image-wrapper{
+  width:100%;
+  height: 100%;
   overflow: hidden;
-  border-radius: 50%;
   border: 1px solid $green;
 }
-.people-image {
-  width: 218px;
-  height: 218px;
+.ministry-image {
+  width:100%;
+  height: 100%;
   transition: all 0.3s;  
   object-fit: cover;  
   object-position: center center; 
@@ -30,7 +29,7 @@
   } 
 }
 
-.people-content{
+.ministry-content{
   h1,h2{
     text-align: center;
   }
