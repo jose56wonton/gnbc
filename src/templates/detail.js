@@ -1,21 +1,24 @@
 import Helmet from "react-helmet";
 import React, { Component } from "react";
-import Tile from '../components/detail/tile';
+import Tile from "../components/detail/tile";
 class Detail extends Component {
   mapDetailsToTiles = () => {
+    console.log(this.props.data.markdownRemark.frontmatter)
     return this.props.data.markdownRemark.frontmatter.tiles.map((tile, i) => {
       console.log(tile);
       const {
-        sideText,
-        title,
-        description
+        leftTitle,
+        rightTitle,
+        rightDescription,
+        leftDescription
       } = tile.childMarkdownRemark.frontmatter;
       return (
-        <Tile 
-        key={title}
-        sideText={sideText}
-        title={title}
-        description={description}
+        <Tile
+          key={i * Math.random()*100}
+          leftTitle={leftTitle}
+          rightTitle={rightTitle}
+          rightDescription={rightDescription}
+          leftDescription={leftDescription}
         />
       );
     });
@@ -45,13 +48,14 @@ export const DetailPathQuery = graphql`
         type
         path
         title
-        tiles{
+        tiles {
           publicURL
           childMarkdownRemark {
             frontmatter {
-              title
-              description
-              sideText
+              rightTitle
+              rightDescription
+              leftTitle
+              leftDescription
             }
           }
         }

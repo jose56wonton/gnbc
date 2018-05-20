@@ -133,3 +133,9 @@ button:focus {
     font-size: 2rem;
 }
 
+.is-inverse-mobile{
+    @include mobile{
+        flex-direction: column-reverse;
+        display: flex;
+    }
+}

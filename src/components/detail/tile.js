@@ -25,15 +25,17 @@ class Tile extends Component {
         onMouseLeave={this.onMouseLeave}
         className="column is-12 detail-tile"
       >
-        <div className="columns">
-          <div className="column detail-side">
-            <p>{this.props.sideText}</p>
+        <div className="columns is-inverse-mobile">
+          <div className="column is-3 detail-side">
+            <h1 className="title-1">
+             {this.props.leftTitle}
+            </h1>
+            <p className="text">{this.props.leftDescription}</p>
           </div>
           <div className="column detail-content">
-            <h1 className="title-1">{this.props.title}</h1>
-            <p className="text">{this.props.description}</p>
+            <h1 className="title-1">{this.props.rightTitle}</h1>
+            <p className="text">{this.props.rightDescription}</p>
           </div>
-          
         </div>
       </div>
     );
