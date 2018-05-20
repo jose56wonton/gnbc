@@ -8,7 +8,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   const peopleTemplate = path.resolve(`src/templates/people.js`);
   const mediaTemplate = path.resolve("src/templates/media.js");
   const contactTemplate = path.resolve("src/templates/contact.js");
-  
+  const messageTemplate = path.resolve("src/templates/message.js");
   graphql(`
     {
       allMarkdownRemark {
@@ -17,7 +17,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             frontmatter {
               path
               type
-              title
+              title 
+              date
               templateType
             }
           }
@@ -70,6 +71,18 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           component: mediaTemplate,
           context: {
             name: node.frontmatter.path
+          },
+          title: node.frontmatter.title
+        });
+      }
+      if (node.frontmatter.templateType === "Message") {
+       
+        const messagePath = encodeURI(node.frontmatter.title.toLowerCase().split(" ").join("-"));
+        createPage({
+          path: `/media/${messagePath}`,
+          component: messageTemplate,
+          context: {
+            name: node.frontmatter.date
           },
           title: node.frontmatter.title
         });
