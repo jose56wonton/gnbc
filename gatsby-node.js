@@ -3,11 +3,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
   const { createPage } = boundActionCreators;
 
-  const calendarTemplate = path.resolve(`src/templates/calendar.js`);
   const detailTemplate = path.resolve(`src/templates/detail.js`);
   const ministryTemplate = path.resolve(`src/templates/ministry.js`);
   const peopleTemplate = path.resolve(`src/templates/people.js`);
-  const sermonTemplate = path.resolve("src/templates/sermon.js");
+  const mediaTemplate = path.resolve("src/templates/media.js");
 
   graphql(`
     {
@@ -31,17 +30,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       
-      if (node.frontmatter.templateType === "Calendar"){
-        createPage({
-          path: `/media/${node.frontmatter.path}/`,
-          component: calendarTemplate,
-          context: {
-            name: node.frontmatter.path
-          },
-          title: node.frontmatter.title
-        });
-      }
-
       if (node.frontmatter.templateType === "Detail"){
         createPage({
           path: `/about/${node.frontmatter.path}/`,
@@ -75,10 +63,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         });
       }
 
-      if (node.frontmatter.templateType === "Sermon") {
+      if (node.frontmatter.templateType === "Media") {
         createPage({
-          path: `/media/${node.frontmatter.path}`,
-          component: sermonTemplate,
+          path: `/${node.frontmatter.path}`,
+          component: mediaTemplate,
           context: {
             name: node.frontmatter.path
           },

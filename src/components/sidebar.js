@@ -69,7 +69,7 @@ class SideBar extends Component {
             <SideLink action={this.burgerOrLinkClick} path="/" text="Home" classes="primary" />
             <SideButton action={this.selectNavSection} text="About" classes="primary" />
             <SideButton action={this.selectNavSection} text="Ministry" classes="primary" />
-            <SideButton action={this.selectNavSection} text="Media" classes="primary" />
+            <SideLink action={this.burgerOrLinkClick} path="/media" text="Media" classes="primary" />
             <SideLink action={this.burgerOrLinkClick} path="/contact" text="Contact" classes="primary" />
           </div>
           <div className={`column animated fadeInRight is-offset-1 is-narrow ${this.state.visbleSection === true ? "" : "is-hidden-mobile"}`}>{subNavObjects}</div>
