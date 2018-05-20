@@ -2,14 +2,31 @@ import Helmet from "react-helmet";
 import React, { Component } from "react";
 
 class Media extends Component {
+
+  mapMessagesToTiles = () => {
+    return this.props.data.allFile.edges.map((messageNode,i)=> {
+      const message = messageNode.node.childMarkdownRemark;
+      console.log(message);
+
+      return(
+        <div className="column is-12">asdf</div>
+
+
+      )
+    })
+  }
   render() {
-    console.log(this.props.data)
+    console.log(this.props.data);
+    const messageElements = this.mapMessagesToTiles();
     const { frontmatter } = this.props.data.markdownRemark;
     return (
       <div>
         <Helmet title={`Media`} />
         <div>
-          <h1>{frontmatter.title}</h1>          
+          <h1>{frontmatter.title}</h1>         
+          <div className="columns is-multiline">
+            {messageElements}
+          </div> 
         </div>
       </div>
     );
@@ -19,20 +36,24 @@ class Media extends Component {
 export default Media;
 
 export const MediaPathQuery = graphql`
-  query MediaPath($name: String!) {
-    allFile(filter: { extension: { eq: "mp3" } }) {
-      edges {
-        node {
-          publicURL
+  query MediaPath($name: String!){
+    allFile(filter: {absolutePath: {regex:"/messageMarkdown/.*\\.md$/"}}) {
+      edges{
+        node{
+          childMarkdownRemark{
+            frontmatter{
+              title
+              speaker
+              date
+            }
+            excerpt(pruneLength: 100)
+          }
         }
       }
-    }
+    } 
     markdownRemark(frontmatter: { path: { eq: $name } }) {
-      html
       frontmatter {
-        type 
-        path
-        title
+        title       
       }
     }
   }

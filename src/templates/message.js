@@ -4,7 +4,7 @@ import React, { Component } from "react";
 class Message extends Component {
   render() {
     
-    const {title,date,speaker,mp3  } = this.props.data.markdownRemark.frontmatter;
+    const {title,date,speaker,mp3} = this.props.data.markdownRemark.frontmatter;
     return (
       <div>
         <Helmet title={`Media - ${title}`} />
