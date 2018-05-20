@@ -1,5 +1,5 @@
 const path = require("path");
-import {stringToUrl} from './src/utils';
+const stringToUrl = require('./src/utils').stringToUrl;
 exports.createPages = ({ boundActionCreators, graphql }) => {
 
   const { createPage } = boundActionCreators;

@@ -1,6 +1,6 @@
 import Helmet from "react-helmet";
 import React, { Component } from "react";
-
+import MP3Player from '../components/media/mp3Player';
 class Message extends Component {
   render() {
     const {
@@ -9,9 +9,12 @@ class Message extends Component {
       speaker,
       mp3
     } = this.props.data.markdownRemark.frontmatter;
+    
     return (
       <div>
         <Helmet title={`Media - ${title}`} />
+
+        <MP3Player url={mp3.publicURL} />
         <div className="message-intro">
           <p className="message-date">{date}</p>
           <h1 className="message-title">{title}</h1>

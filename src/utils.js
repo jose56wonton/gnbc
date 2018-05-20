@@ -1,3 +1,3 @@
-export const stringToUrl = (string) => {
+exports.stringToUrl = function(string){
   return encodeURI(string.toLowerCase().split(" ").join("-"))
 }
