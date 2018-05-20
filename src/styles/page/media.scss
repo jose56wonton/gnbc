@@ -1,11 +1,24 @@
 
-.detail-tile{
-  padding:20px;
+.media-tile{
+  padding: 1rem;
+  padding-bottom:.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  height: 300px;
 }
-.detail-side{
+.media-tile-hover{
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.media-tile:hover{
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.media-side{
   text-align: right;
 }
-.detail-cover{
+.media-cover{
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -16,7 +29,8 @@
 
 
 
-.detail-content{
+
+.media-content{
   h1,h2{
     text-align: left;
   }

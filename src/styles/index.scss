@@ -43,9 +43,11 @@ root {
     padding-top:10vh;
     min-height: 90vh;
 }
-
+.columns{
+    padding: 1rem 0;
+}
 @import './page/people.scss';
 @import './page/detail.scss';
-@import './page/sermon.scss';
-@import './page/calendar.scss';
+@import './page/media.scss';
 @import './page/ministry.scss';
+

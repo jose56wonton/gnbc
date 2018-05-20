@@ -1,32 +1,34 @@
 import Helmet from "react-helmet";
 import React, { Component } from "react";
-
+import MessageTile from "../components/media/messageTile";
 class Media extends Component {
-
   mapMessagesToTiles = () => {
-    return this.props.data.allFile.edges.map((messageNode,i)=> {
+    return this.props.data.allFile.edges.map((messageNode, i) => {
       const message = messageNode.node.childMarkdownRemark;
       console.log(message);
-
-      return(
-        <div className="column is-12">asdf</div>
-
-
-      )
-    })
-  }
+      const { title, speaker, date } = message.frontmatter;      
+      return (
+        <MessageTile
+          key={i * Math.random() * 12}
+          title={title}
+          date={date}
+          excerpt={message.excerpt}
+          speaker={speaker}
+        />
+      );
+    });
+  };
   render() {
     console.log(this.props.data);
+
     const messageElements = this.mapMessagesToTiles();
     const { frontmatter } = this.props.data.markdownRemark;
     return (
       <div>
         <Helmet title={`Media`} />
         <div>
-          <h1>{frontmatter.title}</h1>         
-          <div className="columns is-multiline">
-            {messageElements}
-          </div> 
+          <h1>{frontmatter.title}</h1>
+          <div className="columns is-multiline">{messageElements}</div>
         </div>
       </div>
     );

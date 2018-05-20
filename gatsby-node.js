@@ -1,4 +1,5 @@
 const path = require("path");
+import {stringToUrl} from './src/utils';
 exports.createPages = ({ boundActionCreators, graphql }) => {
 
   const { createPage } = boundActionCreators;
@@ -77,7 +78,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       }
       if (node.frontmatter.templateType === "Message") {
        
-        const messagePath = encodeURI(node.frontmatter.title.toLowerCase().split(" ").join("-"));
+        const messagePath = stringToUrl(node.frontmatter.title);
         createPage({
           path: `/media/${messagePath}`,
           component: messageTemplate,
