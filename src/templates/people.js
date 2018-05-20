@@ -27,7 +27,7 @@ class People extends Component {
     );
   }
   render() {
-    
+
     const { frontmatter } = this.props.data.markdownRemark;
 
     const staffElements = this.mapPeopleToTiles(); 
@@ -36,7 +36,7 @@ class People extends Component {
       <div className="columns">
         <div className="column is-offset-2 is-8">
           <Helmet title={`${frontmatter.type} - ${frontmatter.title}`} />
-          <h1>{frontmatter.title}</h1>
+          <h1 className="title-1" >{frontmatter.title}</h1>
           <div className="columns  is-multiline">{staffElements}</div>
         </div>
       </div>
