@@ -7,7 +7,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   const ministryTemplate = path.resolve(`src/templates/ministry.js`);
   const peopleTemplate = path.resolve(`src/templates/people.js`);
   const mediaTemplate = path.resolve("src/templates/media.js");
-
+  const contactTemplate = path.resolve("src/templates/contact.js");
+  
   graphql(`
     {
       allMarkdownRemark {
@@ -67,6 +68,17 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         createPage({
           path: `/${node.frontmatter.path}`,
           component: mediaTemplate,
+          context: {
+            name: node.frontmatter.path
+          },
+          title: node.frontmatter.title
+        });
+      }
+
+      if (node.frontmatter.templateType === "Contact") {
+        createPage({
+          path: `/${node.frontmatter.path}`,
+          component: contactTemplate,
           context: {
             name: node.frontmatter.path
           },

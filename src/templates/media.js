@@ -17,8 +17,8 @@ export default function Template({ data }) {
     </div>
   );
 }
-export const SermonPathQuery = graphql`
-  query SermonPath($name: String!) {
+export const MediaPathQuery = graphql`
+  query MediaPath($name: String!) {
     markdownRemark(frontmatter: { path: { eq: $name } }) {
       html
       frontmatter {
