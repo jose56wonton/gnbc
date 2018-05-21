@@ -15,8 +15,10 @@ class MP3Player extends Component {
       volumeProgress: 0.5,
       loadedProgress: 0,
       playedProgress: 0,
+      isMuted: false,
       volumeProgressCss: {},
-      audioProgressCss: {}
+      audioProgressCss: {},
+      volumeButtonPath: "M0 7.667v8h5.333L12 22.333V1L5.333 7.667M17.333 11.373C17.333 9.013 16 6.987 14 6v10.707c2-.947 3.333-2.987 3.333-5.334z"
     };
   }
   toggleIsPlaying = () => {
@@ -63,10 +65,19 @@ class MP3Player extends Component {
       }
     });
   };
+  muteVolume = () => {
+    this.setState({
+      isMuted: !this.state.isMuted
+    },
+    () => {
+      this.updateVolumeCss();
+    })
+  }
   updateVolume = event => {
     this.setState(
       {
-        volumeProgress: parseFloat(event.target.value)
+        volumeProgress: parseFloat(event.target.value),
+        isMuted: false
       },
       () => {
         this.updateVolumeCss();
@@ -74,23 +85,21 @@ class MP3Player extends Component {
     );
   };
   updateVolumeCss = () => {
-    let volumeFillCover = "";
-    if (this.state.volumeProgress > 0.5) {
-      volumeFillCover = "#6F9990";
-    }
-    if (this.state.volumeProgress > 0) {
-      volumeFillCover = "#334642";
-    }
-    if (this.state.volumeProgress == 0) {
-      volumeFillCover = "#0B0E0E";
+    let volumeButtonPath = "";
+    if(this.state.isMuted || this.state.volumeProgress == 0.0){
+      volumeButtonPath = "M0 7.667v8h5.333L12 22.333V1L5.333 7.667";
+    }else if (this.state.volumeProgress > 0.5) {
+      volumeButtonPath = "M14.667 0v2.747c3.853 1.146 6.666 4.72 6.666 8.946 0 4.227-2.813 7.787-6.666 8.934v2.76C20 22.173 24 17.4 24 11.693 24 5.987 20 1.213 14.667 0zM18 11.693c0-2.36-1.333-4.386-3.333-5.373v10.707c2-.947 3.333-2.987 3.333-5.334zm-18-4v8h5.333L12 22.36V1.027L5.333 7.693H0z";
+    }else if (this.state.volumeProgress <= 0.5 && this.state.volumeProgress > 0.0) {
+      volumeButtonPath = "M0 7.667v8h5.333L12 22.333V1L5.333 7.667M17.333 11.373C17.333 9.013 16 6.987 14 6v10.707c2-.947 3.333-2.987 3.333-5.334z";
     }
     this.setState({
       volumeProgressCss: {
         backgroundImage: `-webkit-gradient(linear,left top,right top,color-stop(${
           this.state.volumeProgress
-        }, #6F9990),color-stop(${this.state.volumeProgress},#C5C5C5))`
-      }
-    });
+        }, #6F9990),color-stop(${this.state.volumeProgress},#C5C5C5))`        
+      },volumeButtonPath: volumeButtonPath
+    });    
   };
 
   secondsToTimeFormat = secs => {
@@ -143,17 +152,20 @@ class MP3Player extends Component {
           </div>
 
           <div className="volume">
-            <div className="volume-btn">
+            <div className="volume-btn"
+            onClick={this.muteVolume}
+              >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
+                
               >
                 <path
                   fill="#3A4C56"
                   fill-rule="evenodd"
-                  d="M14.667 0v2.747c3.853 1.146 6.666 4.72 6.666 8.946 0 4.227-2.813 7.787-6.666 8.934v2.76C20 22.173 24 17.4 24 11.693 24 5.987 20 1.213 14.667 0zM18 11.693c0-2.36-1.333-4.386-3.333-5.373v10.707c2-.947 3.333-2.987 3.333-5.334zm-18-4v8h5.333L12 22.36V1.027L5.333 7.693H0z"
+                  d={this.state.volumeButtonPath}
                   id="speaker"
                 />
               </svg>
@@ -179,6 +191,7 @@ class MP3Player extends Component {
           url={this.props.url}
           playing={this.state.isPlaying}
           onProgress={this.updateProgress}
+          muted={this.state.isMuted}
           onDuration={this.updateDuration}
           volume={this.state.volumeProgress}
           ref={this.ref}
