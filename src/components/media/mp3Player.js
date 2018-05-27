@@ -50,7 +50,6 @@ class MP3Player extends Component {
         )
       },
       () => {
-        console.log("asdf");
         this.updateProgressCss();
       }
     );

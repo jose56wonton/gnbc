@@ -7,7 +7,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   const detailTemplate = path.resolve(`src/templates/detail.js`);
   const ministryTemplate = path.resolve(`src/templates/ministry.js`);
   const peopleTemplate = path.resolve(`src/templates/people.js`);
-  const mediaTemplate = path.resolve("src/templates/media.js");
   const contactTemplate = path.resolve("src/templates/contact.js");
   const messageTemplate = path.resolve("src/templates/message.js");
   graphql(`
@@ -18,8 +17,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             frontmatter {
               path
               type
-              title 
-              date
+              title               
               templateType
             }
           }
@@ -33,6 +31,13 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         }
       } 
+      allContentfulMinistry{
+        edges {
+          node {
+            title            
+          }
+        }
+      } 
     }
   `).then(result => {
     if (result.errors) {
@@ -40,9 +45,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     }
     
     result.data.allContentfulMessage.edges.forEach(({node}) => {
-      console.log(node)
       const messagePath = stringToUrl(node.title);
-      console.log(node.title)
       createPage({
         path: `/media/${messagePath}`,
         component: messageTemplate,
@@ -51,6 +54,18 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         },
         title: node.title
       });
+    })
+    result.data.allContentfulMinistry.edges.forEach(({node})=>{
+      const ministryPath = stringToUrl(node.title);
+        createPage({
+          path: `/ministry/${ministryPath}/`,
+          component: ministryTemplate,
+          context: {
+            title: node.title
+          },
+          title: node.title
+        });
+      
     })
 
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
@@ -66,16 +81,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         });
       }
 
-      if (node.frontmatter.templateType === "Ministry") {
-        createPage({
-          path: `/ministry/${node.frontmatter.path}/`,
-          component: ministryTemplate,
-          context: {
-            name: node.frontmatter.path
-          },
-          title: node.frontmatter.title
-        });
-      }
+      
       
       if (node.frontmatter.templateType === "People") {
         createPage({
@@ -88,16 +94,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         });
       }
 
-      if (node.frontmatter.templateType === "Media") {
-        createPage({
-          path: `/${node.frontmatter.path}`,
-          component: mediaTemplate,
-          context: {
-            name: node.frontmatter.path
-          },
-          title: node.frontmatter.title
-        });
-      }
      
 
       if (node.frontmatter.templateType === "Contact") {
