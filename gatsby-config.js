@@ -1,3 +1,5 @@
+
+require('dotenv').config()
 module.exports = {
   //pathPrefix: '/gnbc',
   siteMetadata: {
@@ -7,6 +9,13 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     "gatsby-plugin-react-helmet",
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `${process.env.CONTENTFUL_SPACE_ID}`,
+        accessToken: `${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -20,21 +29,7 @@ module.exports = {
     },
     `gatsby-transformer-remark`,
     `gatsby-plugin-sass`,
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 590
-            }
-          }
-        ]
-      }
-    }
+    `gatsby-transformer-remark`,
+     
   ]
 };

@@ -7,14 +7,17 @@ class Message extends Component {
       title,
       date,
       speaker,
-      mp3
-    } = this.props.data.markdownRemark.frontmatter;
-    
+      topic,
+      passage,
+      mp3,
+      notes
+    } = this.props.data.contentfulMessage;
+    console.log(this.props.data);
     return (
       <div>
         <Helmet title={`Media - ${title}`} />
 
-        <MP3Player url={mp3.publicURL} />
+        <MP3Player url={mp3.file.url} />
         <div className="message-intro">
           <p className="message-date">{date}</p>
           <h1 className="message-title">{title}</h1>
@@ -25,7 +28,7 @@ class Message extends Component {
           </div>   
         </div>
 
-        <div className="message-content" dangerouslySetInnerHTML={{ __html: this.props.data.markdownRemark.html }} />
+        <div className="message-content" dangerouslySetInnerHTML={{ __html: notes.childMarkdownRemark.html }} />
       </div>
     );
   }
@@ -34,17 +37,24 @@ class Message extends Component {
 export default Message;
 
 export const MessagePathQuery = graphql`
-  query MessagePath($name: String!) {
-    markdownRemark(frontmatter: { date: { eq: $name } }) {
-      html
-      frontmatter {
-        title
-        date
-        speaker
-        mp3 {
-          publicURL
-        }
+query MessagePath($title: String!){
+	contentfulMessage(title:{eq: $title}){	  
+    title
+    date
+    speaker
+    topic
+    passage
+    mp3 {
+      file {
+        url
       }
     }
-  }
+   	notes{
+      childMarkdownRemark{
+        html
+      }
+    }
+	}  
+}
+
 `;

@@ -25,12 +25,34 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         }
       }
+      allContentfulMessage {
+        edges {
+          node {
+            title
+            date
+          }
+        }
+      } 
     }
   `).then(result => {
     if (result.errors) {
       return Promise.reject(result.errors);
     }
     
+    result.data.allContentfulMessage.edges.forEach(({node}) => {
+      console.log(node)
+      const messagePath = stringToUrl(node.title);
+      console.log(node.title)
+      createPage({
+        path: `/media/${messagePath}`,
+        component: messageTemplate,
+        context: {
+          title: node.title
+        },
+        title: node.title
+      });
+    })
+
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       
       if (node.frontmatter.templateType === "Detail"){
@@ -76,18 +98,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           title: node.frontmatter.title
         });
       }
-      if (node.frontmatter.templateType === "Message") {
-       
-        const messagePath = stringToUrl(node.frontmatter.title);
-        createPage({
-          path: `/media/${messagePath}`,
-          component: messageTemplate,
-          context: {
-            name: node.frontmatter.date
-          },
-          title: node.frontmatter.title
-        });
-      }
+     
 
       if (node.frontmatter.templateType === "Contact") {
         createPage({
