@@ -139,3 +139,7 @@ button:focus {
         display: flex;
     }
 }
+.is-inverse-row{
+  flex-direction: row-reverse;
+  display: flex;
+}

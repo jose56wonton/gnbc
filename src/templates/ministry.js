@@ -1,14 +1,14 @@
 import Helmet from "react-helmet";
 import React, { Component } from "react";
 import Img from "gatsby-image";
-import Tile from "../components/ministry/tile";
+import MinistryTile from "../components/ministry/ministryTile";
 import Banner from '../components/banner';
 
 class Ministry extends Component {
- 
+
   render() {
     console.log(this.props.data.contentfulMinistry);
-    const { title, covertitle, covertext, tile1title, tile2title, tile1text, tile2text,images } = this.props.data.contentfulMinistry;
+    const { title, covertitle, covertext, tile1title, tile2title, tile1text, tile2text, images } = this.props.data.contentfulMinistry;
     return (
       <div>
         <Helmet title={`Ministry - ${title}`} />
@@ -16,21 +16,23 @@ class Ministry extends Component {
           title={covertitle}
           text={covertext}
         />
-        <h1 className="title-1">{title}</h1>
-
-        <div className="columns is-multiline">
-          <Tile
-            key={images[1].sizes.base64}
-            imageSizes={images[1].sizes}
-            title={tile1title}
-            description={tile1text.childMarkdownRemark.html}
-          />
-          <Tile
-            key={images[2].sizes.base64}
-            imageSizes={images[2].sizes}
-            title={tile2title}
-            description={tile2text.childMarkdownRemark.html}
-          />
+        <div className="container">
+          <div className="columns is-multiline">
+            <MinistryTile
+              key={images[1].sizes.base64}
+              imageSizes={images[1].sizes}
+              title={tile1title}
+              inverse={true}
+              description={tile1text.childMarkdownRemark.html}
+            />
+            <MinistryTile
+              key={images[2].sizes.base64}
+              imageSizes={images[2].sizes}
+              title={tile2title}
+              inverse={false}
+              description={tile2text.childMarkdownRemark.html}
+            />
+          </div>
         </div>
       </div>
     );

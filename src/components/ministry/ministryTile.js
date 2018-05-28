@@ -1,7 +1,7 @@
 import Img from "gatsby-image";
 import React, { Component } from "react";
 
-class Tile extends Component {
+class MinistryTile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,16 +19,17 @@ class Tile extends Component {
     });
   };
   render() {
+    const {inverse} = this.props;
     return (
       <div
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         className="column is-12 ministry-tile"
       >
-        <div className="columns">
-          <div className="column ministry-content">
+        <div className={`columns ${inverse && "is-inverse-row"}`}>
+          <div className={`column ministry-content ${!inverse && "inverse"}`}>
             <h1 className="title-1">{this.props.title}</h1>
-            <p className="text">{this.props.description}</p>
+            <p className="text" dangerouslySetInnerHTML={{ __html: this.props.description }}></p>
           </div>
           <div className="column ministry-image-wrapper">
             <Img
@@ -42,4 +43,4 @@ class Tile extends Component {
   }
 }
 
-export default Tile;
+export default MinistryTile;
