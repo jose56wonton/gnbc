@@ -16,23 +16,24 @@ class Message extends Component {
     return (
       <div>
         <Helmet title={`Media - ${title}`} />
-
-        <MP3Player url={mp3.file.url} />
-        <div className="message-intro">
-          <p className="message-date">{date}</p>
-          <h1 className="message-title">{title}</h1>
-          <div className="message-details">
-            <p><span>Speaker: </span> {speaker}</p>
-            <p><span>Scripture: </span> Romans 8:10-19</p>
-            <p><span>Topic: </span> Killing Sin</p>
-          </div>   
-        </div>
+        <div className="navbar-spacer" />
         <div className="container">
-        <div className="message-content" dangerouslySetInnerHTML={{ __html: notes.childMarkdownRemark.html }} />
-      
+          <div className="column is-10 is-offset-1">
+            <MP3Player url={mp3.file.url} />
+            <div className="message-intro">
+              <p className="message-date">{date}</p>
+              <h1 className="message-title">{title}</h1>
+              <div className="message-details">
+                <p><span>Speaker: </span> {speaker}</p>
+                <p><span>Scripture: </span> Romans 8:10-19</p>
+                <p><span>Topic: </span> Killing Sin</p>
+              </div>
+            </div>
+            <div className="message-content" dangerouslySetInnerHTML={{ __html: notes.childMarkdownRemark.html }} />
+            
+          </div>
         </div>
-
-        </div>
+      </div>
     );
   }
 }

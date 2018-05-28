@@ -23,10 +23,17 @@ class Media extends Component {
     return (
       <div>
         <Helmet title={`Media`} />
-        <div>
-          <h1>Media</h1>
-          <div className="columns is-multiline">{messageElements}</div>
+
+        <div className="navbar-spacer" />
+
+        <div className="container">
+          <div className="column is-10 is-offset-1">
+            <h1>Media</h1>
+            <div className="columns is-multiline ">{messageElements}</div>
+          </div>
+
         </div>
+
       </div>
     );
   }

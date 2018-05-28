@@ -28,11 +28,11 @@ class MediaTile extends Component {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}     
         onClick={this.onClick}   
-        className="column is-4-desktop is-6-tablet is-10-mobile is-offset-1-mobile"
+        className="column is-6-tablet is-10-mobile is-offset-1-mobile"
       >
         <div className="media-tile">
           <div className="media-header">
-            <h1>{this.props.title}</h1>
+            <h3>{this.props.title}</h3>
             <p>{this.props.date}</p>
           </div>
           <div className="media-center">

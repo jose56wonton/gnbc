@@ -13,7 +13,7 @@ const Footer = (props) => {
 
       <div className="footer-connect">
         <div className="container ">
-          <div className="column cols is-8 is-offset-2">
+          <div className="column cols is-10 is-offset-1">
             <div className="col">
               <div>
                 <h4>Logistics</h4>
@@ -40,7 +40,7 @@ const Footer = (props) => {
       </div>
       <div className="footer-links">
         <div className="container">
-          <div className="column is-8 is-offset-2">
+          <div className="column is-10 is-offset-1">
           <div>
               <h3>About</h3>
               <ul>
@@ -67,7 +67,7 @@ const Footer = (props) => {
       </div>
       <div className="footer-reserved">
         <div className="container">
-          <div className="column is-8 is-offset-2">
+          <div className="column is-10 is-offset-1">
             <h3>Good News Bible Church</h3>
             <p>All rights reserved. GNBC 2018.</p>
           </div>
