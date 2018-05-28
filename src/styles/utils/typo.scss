@@ -5,7 +5,10 @@ h2{
   font-size: 2.0rem;
   color:$green;
 }
-p{
+h4{
+  font-size: 1rem;
+}
+p,a{
   font-size: .8rem;  
 }
 
@@ -18,7 +21,11 @@ p{
     font-size: 2.8rem;
     color:$green;
   }
-  p{
+  h4{
+    font-size: 1.2rem;
+  }
+
+  p,a{
     font-size: 1.1rem;
   }
 }
@@ -30,7 +37,10 @@ p{
     font-size: 3.4rem;
     color:$green;
   }
-  p{
+  h4{
+    font-size: 1.2rem;
+  }
+  p,a{
     font-size: 1.1rem;
   }
 }
@@ -40,10 +50,12 @@ p{
   }
   h2{
     font-size: 4rem;
-    color:$green;
-    
+    color:$green;    
   }
-  p{
+  h4{
+    font-size: 1.4rem;
+  }
+  p,a{
     font-size: 1.2rem;
   }
 }

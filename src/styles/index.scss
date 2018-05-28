@@ -41,8 +41,12 @@ root {
 @import './utils/typo.scss';
 @import './icons/css/fontawesome-all.css';
 
+#___gatsby{
+  width: 100vw !important;
+}
 .min-page-height{
   min-height: 90vh;
+  width: 100vw;
 }
 .columns{
     padding: 1rem 0;

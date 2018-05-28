@@ -27,9 +27,12 @@ class Message extends Component {
             <p><span>Topic: </span> Killing Sin</p>
           </div>   
         </div>
-
+        <div className="container">
         <div className="message-content" dangerouslySetInnerHTML={{ __html: notes.childMarkdownRemark.html }} />
-      </div>
+      
+        </div>
+
+        </div>
     );
   }
 }

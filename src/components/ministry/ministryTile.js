@@ -12,7 +12,7 @@ class MinistryTile extends Component {
       >
         <div className={`columns is-inverse-touch  is-multiline`}>
           <div className="column is-3 is-12-touch ministry-sidebar">
-            {this.props.sideContent && <div><p> Resources <i className="fas fa-book"></i></p>
+            {this.props.sideContent && <div><h3> Resources <i className="fas fa-book"></i></h3>
               <div dangerouslySetInnerHTML={{ __html: this.props.sideContent }} /></div>}
           </div>
           <div className={`column is-9 is-12-touch ministry-content `} dangerouslySetInnerHTML={{ __html: this.props.content }} />
