@@ -164,7 +164,7 @@ button:focus {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        align-content: space-around;
+        align-content: space-between;
         align-items: center;
         height: 100%;
         a{
@@ -186,9 +186,23 @@ button:focus {
     }
     .footer-links{
       background-color: $darkGreen;
+      padding-top:20px ;
       overflow:hidden;
+      
+      .column{
+        border-bottom: 2px $green solid;
+        display: flex;
+        flex-direction: row;
+        padding-bottom:20px;
+        justify-content: space-between;
+        @include mobile{
+          flex-direction: column;
+          padding-left: 30px;
+        }        
+      }
       h1,h2,h3,h4{
         color:$green;
+        font-weight: bold;
       }
       p,a{
         color:white;
@@ -200,6 +214,20 @@ button:focus {
       overflow:hidden;
       background-color: $darkGreen;
       
+      .column{
+        height: 140px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: center;
+        justify-content: space-between;
+        @include mobile{
+          flex-direction: column;
+          justify-content: space-around;
+          padding-left: 30px;
+        } 
+        color:white;
+      }
     }
 
 }

@@ -32,7 +32,6 @@ class Layout extends Component {
     }else{
       this.setState({isNavTransparent:true})
     }
-    console.log(this.state.isNavTransparent);
   }
  
   render() {
@@ -62,7 +61,7 @@ class Layout extends Component {
         {this.props.children()}
         
        
-        <Footer siteTitle={this.props.data.site.siteMetadata.title} />
+        <Footer ministryEdges={this.props.data.allContentfulMinistry.edges} siteTitle={this.props.data.site.siteMetadata.title} />
       </div>
     );
   }
@@ -81,17 +80,13 @@ export const query = graphql`
         title
       }
     }
-    allMarkdownRemark {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            path
-            type
-          }
+    allContentfulMinistry{
+      edges{
+        node{
+          title
+          path
         }
       }
-    }
+    } 
   }
 `;

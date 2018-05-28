@@ -7,7 +7,6 @@ import Banner from '../components/banner';
 class Ministry extends Component {
 
   render() {
-    console.log(this.props.data.contentfulMinistry);
     const { title, banner1,content1,content2,resources, images } = this.props.data.contentfulMinistry;
     return (
       <div className="ministry">
