@@ -40,13 +40,9 @@ class Layout extends Component {
           />
         ) : null}
 
-        <div className="container ">
-          <div className="columns">
-            <div className="column is-offset-2 is-8">
-              {this.props.children()}
-            </div>
-          </div>
-        </div>
+        
+        {this.props.children()}
+       
         <Footer siteTitle={this.props.data.site.siteMetadata.title} />
       </div>
     );

@@ -94,19 +94,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         });
       }
 
-     
-
-      if (node.frontmatter.templateType === "Contact") {
-        createPage({
-          path: `/${node.frontmatter.path}`,
-          component: contactTemplate,
-          context: {
-            name: node.frontmatter.path
-          },
-          title: node.frontmatter.title
-        });
-      }
-      
     });
   });
 };

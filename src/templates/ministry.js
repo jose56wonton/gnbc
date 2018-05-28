@@ -2,16 +2,23 @@ import Helmet from "react-helmet";
 import React, { Component } from "react";
 import Img from "gatsby-image";
 import Tile from "../components/ministry/tile";
+import Banner from '../components/banner';
+
 class Ministry extends Component {
  
   render() {
     console.log(this.props.data.contentfulMinistry);
-    const { title, tile1title, tile2title, tile1text, tile2text,images } = this.props.data.contentfulMinistry;
+    const { title, covertitle, covertext, tile1title, tile2title, tile1text, tile2text,images } = this.props.data.contentfulMinistry;
     return (
       <div>
         <Helmet title={`Ministry - ${title}`} />
+        <Banner image={images[0].sizes}
+          title={covertitle}
+          text={covertext}
+        />
         <h1 className="title-1">{title}</h1>
-        <div className="columns  is-multiline">
+
+        <div className="columns is-multiline">
           <Tile
             key={images[1].sizes.base64}
             imageSizes={images[1].sizes}
@@ -37,6 +44,8 @@ query MinistryQuery($title: String!){
 	contentfulMinistry(title:{eq: $title}){	  
   	title
     path
+    covertitle
+    covertext
     tile1text {
       childMarkdownRemark{
         html
@@ -50,7 +59,7 @@ query MinistryQuery($title: String!){
     tile1title
     tile2title
     images{
-      sizes(maxWidth: 600, quality: 90) {
+      sizes(maxWidth: 1920, quality: 90) {
         ...GatsbyContentfulSizes
       }
     }

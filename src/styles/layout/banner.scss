@@ -1,0 +1,77 @@
+.banner{
+  width: 100vw;
+  position: relative;
+  @include mobile{
+    height: 40vh;
+    .banner-title{
+      font-size: 2.4rem;
+      line-size: 2.4rem;
+    }
+    .banner-text{
+      font-size: 1rem;
+      line-size: 1rem;
+    }
+  }
+  @include tablet{
+    height: 60vh;
+    .banner-title{
+      font-size: 3rem;
+      line-size: 3rem;
+    }
+    .banner-text{
+      font-size: 1.4rem;
+      line-size: 1.4rem;
+    }
+  }
+  @include desktop{
+    height: 80vh;
+    .banner-title{
+      font-size: 4rem;
+      line-size: 4rem;
+    }
+    .banner-text{
+      font-size: 1.8rem;
+      line-size: 1.8rem;
+    }
+  }
+  @include widescreen{
+    height: 100vh;
+    .banner-title{
+      font-size: 5rem;
+      line-size: 5rem;
+    }
+    .banner-text{
+      font-size: 2rem;
+      line-size: 2rem;
+    }
+  }
+
+  
+  
+  
+  
+  .banner-content{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    color:white;    
+  }
+  .gatsby-image-outer-wrapper{
+    height:100%;
+    width:100%;
+    .banner-image{
+      width: 100% !important;
+      height: 100% !important;
+     
+      img{
+        max-width: 100vw;
+        max-height: 100vh;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
+    }
+  }
+ 
+}
