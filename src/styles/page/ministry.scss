@@ -1,7 +1,67 @@
+.ministry{
+  
+  h1{
+    font-size: 2.4rem;
+  }
+  h2{
+    font-size: 2.0rem;
+    color:$green;
+  }
+  p{
+    font-size: .8rem;
+    i{
+      color:$darkGreen;
+    }
+  }
+  a{
+    font-weight:bold;
+    text-decoration: none;
+    color:$green;
+    transition: all .3s ease;
+    &:hover{
+      color:$darkGreen;
+    }
+  }
+  
+  @include tablet{
+    h1{
+      font-size: 4rem;
+    }
+    h2{
+      font-size: 2.8rem;
+    }
+    p{
+      font-size: 1.1rem;
+    }
+  }
+  @include desktop{
+    h1{
+      font-size: 5rem;
+    }
+    h2{
+      font-size: 3.4rem;
+    }
+    p{
+      font-size: 1.1rem;
+    }
+  }
+  @include widescreen{
+    h1{
+      font-size: 7rem;
+    }
+    h2{
+      font-size: 4rem;
+      
+    }
+    p{
+      font-size: 1.2rem;
+    }
+  }
+}
+
 
 .ministry-tile{
-  height: 60vh;
-  padding:20px;
+  padding:70px 0;
 }
 .ministry-cover{
   width: 100%;
@@ -34,5 +94,11 @@
   &.inverse{
     text-align: right;
   }
+  border-left: 2px solid $green;
+  padding-left:40px;
+}
+.ministry-sidebar{
+  text-align: left;
+  padding-right: 40px;
 }
 

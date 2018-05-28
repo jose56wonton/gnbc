@@ -1,14 +1,13 @@
 @import '../../node_modules/bulma/bulma.sass';
 //@import '../../node_modules/animate.css/animate.min.css';
 
-@import url('https://fonts.googleapis.com/css?family=Hind+Guntur|Kavivanar');
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway');
 h1{
-   font-family: 'Kavivanar', cursive;
-   font-weight: 600; 
+   font-family: 'Montserrat', cursive;
+   font-weight: 700; 
 }
 p{
-    font-family: 'Hind Guntur', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: 300;
 }
 
@@ -20,6 +19,7 @@ $dark: #3A4C56;
 $grey: #6B7F82;
 $purple: #706677;
 $green: #6F9990;
+$darkGreen: #47625C;
 $accent4: #638FA1;
 
 body {
@@ -40,9 +40,10 @@ root {
 @import './utils/hover.scss';
 @import './utils/typography.scss';
 
-.container{
-    padding-top:10vh;
-    min-height: 90vh;
+@import './icons/css/fontawesome-all.css';
+
+.min-page-height{
+  min-height: 90vh;
 }
 .columns{
     padding: 1rem 0;

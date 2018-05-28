@@ -12,10 +12,8 @@ class Banner extends Component {
     return (
       <div className="banner">
         <Img className="banner-image" sizes={this.props.image}/>
-        <div className="banner-content">
-          <h1 className="banner-title">{this.props.title}</h1>
-          <p className="banner-text">{this.props.text}</p>
-        </div>
+        <div className="banner-content" dangerouslySetInnerHTML={{__html:this.props.content}} />
+          
       </div>
     );
   }

@@ -8,31 +8,27 @@ class Ministry extends Component {
 
   render() {
     console.log(this.props.data.contentfulMinistry);
-    const { title, covertitle, covertext, tile1title, tile2title, tile1text, tile2text, images } = this.props.data.contentfulMinistry;
+    const { title, banner1,content1,content2,resources, images } = this.props.data.contentfulMinistry;
     return (
-      <div>
+      <div className="ministry">
         <Helmet title={`Ministry - ${title}`} />
-        <Banner image={images[0].sizes}
-          title={covertitle}
-          text={covertext}
+        <Banner 
+          image={images[0].sizes}
+          content={banner1.childMarkdownRemark.html}
         />
         <div className="container">
-          <div className="columns is-multiline">
+          <MinistryTile
+            content={content1.childMarkdownRemark.html}
+            sideContent={resources.childMarkdownRemark.html}
+          />
+        </div>
+        <Banner 
+          image={images[1].sizes}
+        />
+        <div className="container">
             <MinistryTile
-              key={images[1].sizes.base64}
-              imageSizes={images[1].sizes}
-              title={tile1title}
-              inverse={true}
-              description={tile1text.childMarkdownRemark.html}
+              content={content2.childMarkdownRemark.html}
             />
-            <MinistryTile
-              key={images[2].sizes.base64}
-              imageSizes={images[2].sizes}
-              title={tile2title}
-              inverse={false}
-              description={tile2text.childMarkdownRemark.html}
-            />
-          </div>
         </div>
       </div>
     );
@@ -46,25 +42,33 @@ query MinistryQuery($title: String!){
 	contentfulMinistry(title:{eq: $title}){	  
   	title
     path
-    covertitle
-    covertext
-    tile1text {
+    banner1 {
       childMarkdownRemark{
         html
       }
     }
-    tile2text {
+    content1 {
+      childMarkdownRemark{
+        html
+      }
+    }   
+    
+    content2 {
       childMarkdownRemark{
         html
       }
     }
-    tile1title
-    tile2title
     images{
-      sizes(maxWidth: 1920, quality: 90) {
+      sizes(maxWidth: 1920,quality: 90){
         ...GatsbyContentfulSizes
       }
     }
+    resources{
+      childMarkdownRemark{
+        html
+      }
+    }
+   	
 	}  
 }
 `;

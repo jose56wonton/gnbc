@@ -2,41 +2,20 @@ import Img from "gatsby-image";
 import React, { Component } from "react";
 
 class MinistryTile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hover: false
-    };
-  }
-  onMouseLeave = () => {
-    this.setState({
-      hover: false
-    });
-  };
-  onMouseEnter = () => {
-    this.setState({
-      hover: true
-    });
-  };
+
   render() {
-    const {inverse} = this.props;
     return (
       <div
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
-        className="column is-12 ministry-tile"
+        className="column is-10 is-offset-1 ministry-tile"
       >
-        <div className={`columns ${inverse && "is-inverse-row"}`}>
-          <div className={`column ministry-content ${!inverse && "inverse"}`}>
-            <h1 className="title-1">{this.props.title}</h1>
-            <p className="text" dangerouslySetInnerHTML={{ __html: this.props.description }}></p>
+        <div className={`columns is-inverse-touch  is-multiline`}>
+          <div className="column is-3 is-12-touch ministry-sidebar">
+            {this.props.sideContent && <div><p> Resources <i className="fas fa-book"></i></p>
+              <div dangerouslySetInnerHTML={{ __html: this.props.sideContent }} /></div>}
           </div>
-          <div className="column ministry-image-wrapper">
-            <Img
-              className={`ministry-image ${this.state.hover && "is-hovered"}`}
-              sizes={this.props.imageSizes}
-            />
-          </div>
+          <div className={`column is-9 is-12-touch ministry-content `} dangerouslySetInnerHTML={{ __html: this.props.content }} />
         </div>
       </div>
     );
