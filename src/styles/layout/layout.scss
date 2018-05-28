@@ -138,12 +138,20 @@ button:focus {
     .footer-connect{
       background-color: $green;
       padding:20px 0 ;
+      position: relative;
       overflow:hidden;
-
-      .columns{
+      .column{
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
+        
+        @include mobile{
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;          
+        }
       }
+      
       h4{
         color:$dark;
         font-weight: bold;
@@ -159,10 +167,19 @@ button:focus {
         align-content: space-around;
         align-items: center;
         height: 100%;
-        img{
-          height: 2rem;
-          width: auto;
+        a{
           margin-right: 1rem;
+          img{
+            height: 2rem;
+            width: auto;            
+          }
+        }
+        
+        @include mobile{
+          margin-top: 2rem;
+          img{
+            height: 1.5rem;
+          }
         }
       }
       
