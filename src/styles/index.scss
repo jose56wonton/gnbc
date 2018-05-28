@@ -2,7 +2,7 @@
 //@import '../../node_modules/animate.css/animate.min.css';
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway');
-h1{
+h1,h2,h3,a,button{
    font-family: 'Montserrat', cursive;
    font-weight: 700; 
 }
@@ -38,7 +38,6 @@ root {
 @import './utils/hamburger.scss';
 @import'./layout/layout.scss';
 @import './utils/hover.scss';
-@import './utils/typography.scss';
 
 @import './icons/css/fontawesome-all.css';
 

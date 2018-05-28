@@ -10,16 +10,34 @@ class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isNavMenuActive: false
+      isNavMenuActive: false,
+      isNavTransparent: true
     };
   }
   toggleBurger = () => {
     this.setState({ isNavMenuActive: !this.state.isNavMenuActive });
   };
+  
+  componentDidMount = () => {
+    window.addEventListener('scroll', this.handleScroll);
+  }
 
+  componentWillUnmount = () => {
+      window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = (event) => {
+    if(event.srcElement.scrollingElement.scrollTop){
+      this.setState({isNavTransparent:false})
+    }else{
+      this.setState({isNavTransparent:true})
+    }
+    console.log(this.state.isNavTransparent);
+  }
+ 
   render() {
     return (
-      <div className="min-size">
+      <div className="min-page-height" >
         <Helmet
           title={this.props.data.site.siteMetadata.title}
           meta={[
@@ -28,6 +46,7 @@ class Layout extends Component {
           ]}
         />
         <Header
+          isNavTransparent={this.state.isNavTransparent}
           toggleBurger={this.toggleBurger}
           isNavMenuActive={this.state.isNavMenuActive}
           siteTitle={this.props.data.site.siteMetadata.title}
@@ -40,8 +59,8 @@ class Layout extends Component {
           />
         ) : null}
 
-        
         {this.props.children()}
+        
        
         <Footer siteTitle={this.props.data.site.siteMetadata.title} />
       </div>

@@ -1,27 +1,64 @@
 .navbar {
-    height: 10vh;
+    height: 70px;
     padding: 1.8rem;
-    background-color: transparent;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: all .3s ease;
+    background-color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .navbar-brand {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         width: 100%;
         .navbar-element {
-            font-size: 1.8rem;
-            @include tablet {
-                line-height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+          transition: all .3s ease;
+            font-size: 1.8rem;           
             text-decoration: none;
-            padding: 0 .4rem;
-            span:before,
-            span:after {
-                height: .15rem;
+            padding: 0 .4rem;    
+            color:$green;  
+            &:hover{
+              color:$dark;
+            }      
+        }
+        .hamburger{
+          transition: all .3s ease;
+          transform: translateY(4px);
+          .hamburger-inner,.hamburger-inner::after,.hamburger-inner::before{
+            background-color:$green !important;
+          }
+          &:hover{
+            .hamburger-inner,.hamburger-inner::after,.hamburger-inner::before{
+              background-color:$dark !important;
             }
+          }
         }
     }
+  &.is-transparent{
+    box-shadow: none;
+    background-color: transparent;
+    .navbar-element {
+      transition: all .3s ease;
+      color:white;      
+      &:hover{
+        color:$green;
+      }
+    }
+    .hamburger{
+      transition: all .3s ease;
+      transform: translateY(4px);
+      .hamburger-inner,.hamburger-inner::after,.hamburger-inner::before{
+        background-color:white !important;
+      }
+      &:hover{
+        .hamburger-inner,.hamburger-inner::after,.hamburger-inner::before{
+          background-color:$green !important;
+        }
+      }
+     
+    }
+  }
 }
 
 .sidebar-menu {
