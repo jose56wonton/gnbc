@@ -2,48 +2,40 @@
   width: 100vw;
   position: relative;
   @include mobile{
-    height: 50vh;
-    .banner-title{
-      font-size: 2.4rem;
-      line-size: 2.4rem;
+    &.banner-sm{
+      height: 30vh; 
     }
-    .banner-text{
-      font-size: 1rem;
-      line-size: 1rem;
+    &.banner-lg{
+      height: 50vh; 
     }
+       
   }
   @include tablet{
-    height: 60vh;
-    .banner-title{
-      font-size: 3rem;
-      line-size: 3rem;
+    &.banner-sm{
+      height: 40vh; 
     }
-    .banner-text{
-      font-size: 1.4rem;
-      line-size: 1.4rem;
+    &.banner-lg{
+      height: 60vh;
     }
+        
   }
   @include desktop{
-    height: 80vh;
-    .banner-title{
-      font-size: 4rem;
-      line-size: 4rem;
+    &.banner-sm{
+      height: 50vh; 
     }
-    .banner-text{
-      font-size: 1.8rem;
-      line-size: 1.8rem;
+    &.banner-lg{
+      height: 80vh;  
     }
+      
   }
   @include widescreen{
-    height: 100vh;
-    .banner-title{
-      font-size: 5rem;
-      line-size: 5rem;
+    &.banner-sm{
+      height: 60vh; 
     }
-    .banner-text{
-      font-size: 2rem;
-      line-size: 2rem;
+    &.banner-lg{
+      height: 100vh;  
     }
+      
   }
 
   

@@ -14,6 +14,7 @@ class Ministry extends Component {
         <Helmet title={`Ministry - ${title}`} />
         <Banner 
           image={images[0].sizes}
+          size="lg"
           content={banner1.childMarkdownRemark.html}
         />
         <div className="container">
@@ -23,6 +24,7 @@ class Ministry extends Component {
           />
         </div>
         <Banner 
+          size="sm"
           image={images[1].sizes}
         />
         <div className="container">
