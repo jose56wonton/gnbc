@@ -5,12 +5,9 @@ import gmail from '../styles/icons/social/gmail.png'
 import instagram from "../styles/icons/social/instagram.png";
 
 const Footer = (props) => {
-  console.log(props);
   const ministryLinks = props.ministryEdges.map((ministry,i) => {
-    console.log(ministry);
     return <li key={i * Math.random() * 100}><Link to={`/ministry/${ministry.node.path}`}>{ministry.node.title}</Link></li>
   })
-  console.log(ministryLinks)
   return (
     <div className="footer">
 
@@ -19,18 +16,20 @@ const Footer = (props) => {
           <div className="column cols is-8 is-offset-2">
             <div className="col">
               <div>
-                <h4>Location</h4>
-                <p>845 Pepperwood Ln, Iowa City, IA 52240</p>
+                <h4>Logistics</h4>
+                <p>Locations: 845 Pepperwood Ln, Iowa City, IA 52240</p>
                 <p>Phone: (319) 354-3331</p>
               </div>
             </div>
             <div className="col">
               <div className="social">
-                <a href>
+                <a href="gnbc2@goodnewsiowacity.com">
                   <img src={gmail} />
-                </a> <a href>
+                </a> 
+                <a href="https://www.instagram.com/goodnewsbiblechurchic/?hl=en">
                   <img src={instagram} />
-                </a> <a href>
+                </a>
+                <a href="https://www.facebook.com/goodnewsiowacity/">
                   <img src={facebook} />
                 </a>
               </div>

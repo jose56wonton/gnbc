@@ -6,20 +6,32 @@ import Footer from "../components/footer";
 import SideBar from "../components/sidebar";
 import React, { Component } from "react";
 
+
 class Layout extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      isNavMenuActive: false,
-      isNavTransparent: true
-    };
+    super(props);   
+      this.state = {
+        isNavMenuActive: false,
+        isNavTransparent: this.props.location.pathname.includes("ministry") ? true : false
+      };
   }
+  
   toggleBurger = () => {
     this.setState({ isNavMenuActive: !this.state.isNavMenuActive });
+     
   };
+
+  componentWillReceiveProps =(nextProps) => {
+    console.log(nextProps.location.pathname)   
+    if(nextProps.location.pathname.includes("ministry")){
+      this.setState({isNavTransparent: true})
+    }else{
+      this.setState({isNavTransparent: false})
+    }
+  }
   
-  componentDidMount = () => {
-    window.addEventListener('scroll', this.handleScroll);
+  componentDidMount = () => {    
+    window.addEventListener('scroll', this.handleScroll);        
   }
 
   componentWillUnmount = () => {
@@ -27,11 +39,13 @@ class Layout extends Component {
   }
 
   handleScroll = (event) => {
-    if(event.srcElement.scrollingElement.scrollTop){
-      this.setState({isNavTransparent:false})
-    }else{
-      this.setState({isNavTransparent:true})
-    }
+    if(this.props.location.pathname.includes("ministry")){
+      if(event.srcElement.scrollingElement.scrollTop){
+        this.setState({isNavTransparent:false})
+      }else{
+        this.setState({isNavTransparent:true})
+      }
+    }    
   }
  
   render() {
@@ -50,13 +64,12 @@ class Layout extends Component {
           isNavMenuActive={this.state.isNavMenuActive}
           siteTitle={this.props.data.site.siteMetadata.title}
         />
-        {this.state.isNavMenuActive ? (
-          <SideBar
-            toggleBurger={this.toggleBurger}
-            isNavMenuActive={this.state.isNavMenuActive}
-            navItems={this.props.data.allMarkdownRemark.edges}
-          />
-        ) : null}
+      
+        <SideBar
+          toggleBurger={this.toggleBurger}
+          isNavMenuActive={this.state.isNavMenuActive}
+          ministryEdges={this.props.data.allContentfulMinistry.edges}
+        />
 
         {this.props.children()}
         
