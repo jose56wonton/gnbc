@@ -11,18 +11,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   const messageTemplate = path.resolve("src/templates/message.js");
   graphql(`
     {
-      allMarkdownRemark {
-        edges {
-          node {
-            frontmatter {
-              path
-              type
-              title               
-              templateType
-            }
-          }
-        }
-      }
+     
       allContentfulMessage {
         edges {
           node {
@@ -64,36 +53,35 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             title: node.title
           },
           title: node.title
-        });
-      
+        });      
     })
 
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    // result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       
-      if (node.frontmatter.templateType === "Detail"){
-        createPage({
-          path: `/about/${node.frontmatter.path}/`,
-          component: detailTemplate,
-          context: {
-            name: node.frontmatter.path
-          },
-          title: node.frontmatter.title
-        });
-      }
+    //   // if (node.frontmatter.templateType === "Detail"){
+    //   //   createPage({
+    //   //     path: `/about/${node.frontmatter.path}/`,
+    //   //     component: detailTemplate,
+    //   //     context: {
+    //   //       name: node.frontmatter.path
+    //   //     },
+    //   //     title: node.frontmatter.title
+    //   //   });
+    //   // }
 
       
       
-      if (node.frontmatter.templateType === "People") {
-        createPage({
-          path: `/about/${node.frontmatter.path}`,
-          component: peopleTemplate,
-          context: {
-            name: node.frontmatter.path
-          },
-          title: node.frontmatter.title
-        });
-      }
+    //   // if (node.frontmatter.templateType === "People") {
+    //   //   createPage({
+    //   //     path: `/about/${node.frontmatter.path}`,
+    //   //     component: peopleTemplate,
+    //   //     context: {
+    //   //       name: node.frontmatter.path
+    //   //     },
+    //   //     title: node.frontmatter.title
+    //   //   });
+    //   // }
 
-    });
+    // });
   });
 };

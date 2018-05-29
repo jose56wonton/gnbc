@@ -1,7 +1,9 @@
 import Img from "gatsby-image";
 import React, { Component } from 'react';
+import { navigateTo } from "gatsby-link"
+const stringToUrl = require('../../utils').stringToUrl;
 
-class Tile extends Component {
+class PeopleTile extends Component {
   constructor(props){
     super(props);
     this.state = { 
@@ -18,9 +20,13 @@ class Tile extends Component {
       hover: true
     })
   }
+  navigateToProfile = () => {
+    navigateTo(this.props.pathPrefix+stringToUrl(this.props.name));
+  }
   render() {
     return (
       <div 
+      onClick={this.navigateToProfile}
       onMouseEnter={this.onMouseEnter}
       onMouseLeave={this.onMouseLeave} 
       className={`column is-6-desktop is-12-mobile people-tile`}>
@@ -29,25 +35,19 @@ class Tile extends Component {
           <Img
             className={`people-image ${this.state.hover && "is-hovered"}`}
             sizes={
-              this.props.imageSizes
+              this.props.image.sizes
             }
           />
         </div>
       </div>
-      <div className="people-content">
-        <h2 className="title-2">
-          {this.props.title}
-        </h2>
-        <h1 className="title-1">
+      <div className="people-content">        
+        <h3 className="title-1">
           {this.props.name}
-        </h1>
-        <p className="text">
-          {this.props.description}
-        </p>
+        </h3>        
       </div>
     </div>
     );
   }
 }
 
-export default Tile;
+export default PeopleTile;

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import {navigateTo} from 'gatsby-link';
 import { stringToUrl } from "../../utils";
+
+
 class MediaTile extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +42,7 @@ class MediaTile extends Component {
           </div>
 
           <div className="media-footer">
-            <p>{this.props.speaker}</p>
+            <p>{this.props.speaker.name}</p>
           </div>
         </div>
       </div>

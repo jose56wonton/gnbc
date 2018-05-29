@@ -46,33 +46,33 @@ class People extends Component {
 
 export default People;
 
-export const PeoplePathQuery = graphql`
-  query PeoplePath($name: String!) {
-    markdownRemark(frontmatter: { path: { eq: $name } }) {
-      html
-      frontmatter {
-        type
-        path
-        title
-        people {
-          publicURL
-          childMarkdownRemark {
-            frontmatter {
-              title
-              name
-              email
-              description
-              image {
-                childImageSharp {
-                  sizes {
-                    ...GatsbyImageSharpSizes
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+// export const PeoplePathQuery = graphql`
+//   query PeoplePath($name: String!) {
+//     markdownRemark(frontmatter: { path: { eq: $name } }) {
+//       html
+//       frontmatter {
+//         type
+//         path
+//         title
+//         people {
+//           publicURL
+//           childMarkdownRemark {
+//             frontmatter {
+//               title
+//               name
+//               email
+//               description
+//               image {
+//                 childImageSharp {
+//                   sizes {
+//                     ...GatsbyImageSharpSizes
+//                   }
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;

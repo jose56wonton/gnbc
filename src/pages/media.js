@@ -5,6 +5,7 @@ class Media extends Component {
   mapMessagesToTiles = () => {
     return this.props.data.allContentfulMessage.edges.map((messageNode, i) => {
       const excerpt = messageNode.node.notes.childMarkdownRemark.excerpt;
+      console.log(messageNode.node.speaker);
       const { title, speaker, date, topic, passage } = messageNode.node;
       return (
         <MediaTile
@@ -48,7 +49,14 @@ export const MediaPathQuery = graphql`
         node{
           title
           date
-          speaker
+          speaker{
+            name
+            image{
+              sizes(maxWidth: 1920,quality: 90){
+                ...GatsbyContentfulSizes
+              }
+            }
+          }
           topic
           passage
           notes{

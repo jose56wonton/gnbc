@@ -45,7 +45,6 @@ query MessagePath($title: String!){
 	contentfulMessage(title:{eq: $title}){	  
     title
     date
-    speaker
     topic
     passage
     mp3 {

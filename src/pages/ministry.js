@@ -40,8 +40,7 @@ export const MinistryPathQuery = graphql`
       edges{
         node{
           title
-          date
-          speaker
+          date          
           topic
           passage
           notes{
