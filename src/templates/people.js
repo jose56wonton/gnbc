@@ -23,7 +23,7 @@ class People extends Component {
           <div className="column is-10 is-offset-1">
             <div className="people-header">
               <h1 className="title-1">{local ? "Staff" : "Cross Culture"}</h1>
-              <Link to={`/about/${local ? "Staff" : "Cross Culture"}`}><i className="fas fa-angle-left"></i> Back to {local ? "Staff" : "Cross Culture"}</Link>
+              <Link to={`/about/${local ? stringToUrl("Staff") : stringToUrl("Cross Culture")}`}><i className="fas fa-angle-left"></i> Back to {local ? "Staff" : "Cross Culture"}</Link>
             </div>
             <div className="columns">
               <div className="column is-5">
@@ -32,7 +32,7 @@ class People extends Component {
               <div className="column is-7">
                 <h2 className="title-1" >{name}</h2>
                 <h4>{role}</h4>
-                <p>Email: <a href={email}>{email}</a> </p>
+                {email && <p>Email: <a href={email}>{email}</a></p>}
                 {ministry && <p>Ministries: {ministryList}  </p>}              
 
                 <div className="people-content" dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }} />
