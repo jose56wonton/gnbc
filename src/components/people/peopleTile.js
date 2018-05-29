@@ -4,36 +4,19 @@ import { navigateTo } from "gatsby-link"
 const stringToUrl = require('../../utils').stringToUrl;
 
 class PeopleTile extends Component {
-  constructor(props){
-    super(props);
-    this.state = { 
-      hover: false
-    }
-  }
-  onMouseLeave = () =>{
-    this.setState({
-      hover: false
-    })
-  }
-  onMouseEnter = () =>{
-    this.setState({
-      hover: true
-    })
-  }
+ 
   navigateToProfile = () => {
-    navigateTo(this.props.pathPrefix+stringToUrl(this.props.name));
+    navigateTo(this.props.type+"/"+stringToUrl(this.props.name));
   }
   render() {
     return (
       <div 
       onClick={this.navigateToProfile}
-      onMouseEnter={this.onMouseEnter}
-      onMouseLeave={this.onMouseLeave} 
-      className={`column is-6-desktop is-12-mobile people-tile`}>
+      className={`column is-4-desktop is-12-mobile people-tile`}>
       <div className="people-cover">
         <div className="people-image-wrapper">
           <Img
-            className={`people-image ${this.state.hover && "is-hovered"}`}
+            className={`people-image`}
             sizes={
               this.props.image.sizes
             }

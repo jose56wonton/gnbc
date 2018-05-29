@@ -27,6 +27,14 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         }
       } 
+      allContentfulPerson{
+        edges{
+          node{
+            name
+            local
+          }
+        }
+      }
     }
   `).then(result => {
     if (result.errors) {
@@ -55,7 +63,16 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           title: node.title
         });      
     })
-
+    result.data.allContentfulPerson.edges.forEach(({node})=>{
+      const path = stringToUrl(node.name);
+      createPage({
+        path: `/about/${node.local ? "staff" : "cross-culture"}/${path}/`,
+        component: peopleTemplate,
+        context: {
+          name: node.name
+        }
+      });  
+    })
     // result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       
     //   // if (node.frontmatter.templateType === "Detail"){

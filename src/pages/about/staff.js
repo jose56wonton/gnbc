@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import Helmet from "react-helmet";
 import PeopleTile from '../../components/people/peopleTile';
@@ -10,14 +10,14 @@ class Staff extends Component {
         console.log(person.node);
         const {
           image,
-          name          
+          name
         } = person.node;
         return (
           <PeopleTile
             key={i * Math.random() * 56}
             image={image}
             name={name}
-            pathPrefix="/about/staff/"
+            type="staff"
           />
         );
       }
@@ -26,22 +26,24 @@ class Staff extends Component {
   render() {
     console.log(this.props.data);
     const peopleElements = this.mapPeopleToTiles();
-    
+
     return (
-      <div>
+      <div className="staff">
         <Helmet title={`About - Staff`} />
         <div className="navbar-spacer" />
         <div className="container">
-          <div className="columns">
-            <div className="column is-offset-2 is-8">              
+          <div className="column is-10 is-offset-1">
+            <div className="people-header">
+
               <h1 className="title-1" >Staff</h1>
-              <div className="columns  is-multiline">{peopleElements}</div>
             </div>
+            <div className="columns  is-multiline">{peopleElements}</div>
           </div>
         </div>
+
       </div>
 
-     );
+    );
   }
 }
 
@@ -55,7 +57,7 @@ export const StaffPathQuery = graphql`
           name
           
           image{
-            sizes(maxWidth: 300,quality: 90){
+            sizes(maxWidth: 600,quality: 90){
               ...GatsbyContentfulSizes
             }
           }

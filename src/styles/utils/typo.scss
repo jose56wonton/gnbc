@@ -14,7 +14,9 @@ h4{
 p,a{
   font-size: .8rem;  
 }
-
+a{
+  color:$green;
+}
 
 @include tablet{
   h1{
