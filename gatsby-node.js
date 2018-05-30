@@ -7,6 +7,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   const detailTemplate = path.resolve(`src/templates/detail.js`);
   const ministryTemplate = path.resolve(`src/templates/ministry.js`);
   const peopleTemplate = path.resolve(`src/templates/people.js`);
+  const aboutTemplate = path.resolve(`src/templates/about.js`);
   const contactTemplate = path.resolve("src/templates/contact.js");
   const messageTemplate = path.resolve("src/templates/message.js");
   graphql(`
@@ -21,6 +22,13 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         }
       } 
       allContentfulMinistry{
+        edges {
+          node {
+            title            
+          }
+        }
+      } 
+      allContentfulAbout{
         edges {
           node {
             title            
@@ -57,6 +65,17 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         createPage({
           path: `/ministry/${ministryPath}/`,
           component: ministryTemplate,
+          context: {
+            title: node.title
+          },
+          title: node.title
+        });      
+    })
+    result.data.allContentfulAbout.edges.forEach(({node})=>{
+      const aboutPath = stringToUrl(node.title);
+        createPage({
+          path: `/about/${aboutPath}/`,
+          component: aboutTemplate,
           context: {
             title: node.title
           },

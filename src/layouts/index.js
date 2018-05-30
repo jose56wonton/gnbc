@@ -12,18 +12,23 @@ class Layout extends Component {
     super(props);   
       this.state = {
         isNavMenuActive: false,
-        isNavTransparent: this.props.location.pathname.includes("ministry") ? true : false
+        isNavTransparent: this.validTransparent(this.props.location.pathname) ? true : false
       };
   }
   
   toggleBurger = () => {
-    this.setState({ isNavMenuActive: !this.state.isNavMenuActive });
-     
+    this.setState({ isNavMenuActive: !this.state.isNavMenuActive });     
   };
-
+  validTransparent = (path) => {
+    console.log(path);
+    if(path.includes("ministry") || path.includes("about") &&(!path.includes("cross-culture") || !path.includes("staff"))){
+      return true;
+    }
+    return false;
+  }
   componentWillReceiveProps =(nextProps) => {
     console.log(nextProps.location.pathname)   
-    if(nextProps.location.pathname.includes("ministry")){
+    if(this.validTransparent(nextProps.location.pathname)){
       this.setState({isNavTransparent: true})
     }else{
       this.setState({isNavTransparent: false})
@@ -31,7 +36,8 @@ class Layout extends Component {
   }
   
   componentDidMount = () => {    
-    window.addEventListener('scroll', this.handleScroll);        
+    window.addEventListener('scroll', this.handleScroll);  
+        
   }
 
   componentWillUnmount = () => {
@@ -39,7 +45,7 @@ class Layout extends Component {
   }
 
   handleScroll = (event) => {
-    if(this.props.location.pathname.includes("ministry")){
+    if(this.validTransparent(this.props.location.pathname)){
       if(event.srcElement.scrollingElement.scrollTop){
         this.setState({isNavTransparent:false})
       }else{
