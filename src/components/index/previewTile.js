@@ -8,11 +8,11 @@ class ServiceTile extends Component {
   }
   render() {
     return (
-      <div className="columns" >        
+      <div className={`columns preview ${this.props.inverse && "is-inverse-row"}`} >        
         <div className="column is-6">
           <Img sizes={this.props.sizes} />
         </div>
-        <div className="column is-6 ">
+        <div className="column is-6 preview-content">
           <div dangerouslySetInnerHTML={{__html: this.props.html }} />
         </div>  
       </div>

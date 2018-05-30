@@ -1,0 +1,18 @@
+.preview{
+  padding: 0px !important;
+  height: 60vh;
+  .column{
+    padding: 0px !important;
+    .gatsby-image-outer-wrapper{
+      height: 100%;
+      .gatsby-image-wrapper{
+        height:100%;
+      }
+    }
+  }
+  .preview-content{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
