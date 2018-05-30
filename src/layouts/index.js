@@ -21,7 +21,7 @@ class Layout extends Component {
   };
   validTransparent = (path) => {
     console.log(path);
-    if(path.includes("ministry") || path.includes("about") &&(!path.includes("cross-culture") || !path.includes("staff"))){
+    if(path === "/" || path.includes("ministry") || path.includes("about") &&(!path.includes("cross-culture") || !path.includes("staff"))){
       return true;
     }
     return false;

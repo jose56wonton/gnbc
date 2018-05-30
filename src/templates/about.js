@@ -64,14 +64,8 @@ query AboutQuery($title: String!){
       }
     }
     images{
-      sizes {
-        base64
-        aspectRatio
-        src
-        srcSet
-        srcWebp
-        srcSetWebp
-        sizes
+      sizes(maxWidth: 1920,quality: 90){
+        ...GatsbyContentfulSizes
       }
     }    
       	
