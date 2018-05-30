@@ -3,11 +3,19 @@ import React, { Component } from "react";
 import Img from "gatsby-image";
 import MinistryTile from "../components/ministry/ministryTile";
 import Banner from '../components/banner';
-
+import Link from 'gatsby-link'
+import { stringToUrl } from '../utils'
 class Ministry extends Component {
-
+  
   render() {
-    const { title, banner1,content1,content2,resources, images } = this.props.data.contentfulMinistry;
+    const { title, banner1,content1,content2,resources, images, leadership } = this.props.data.contentfulMinistry;
+
+    const relatedPeople = leadership.map(person => {
+
+      return <li><Link to={`/about/${person.local ? 'staff' : 'cross-culture'}/${stringToUrl(person.name)}`}>{person.name}</Link></li>
+    })
+    
+
     return (
       <div className="ministry">
         <Helmet title={`Ministry - ${title}`} />
@@ -29,6 +37,7 @@ class Ministry extends Component {
         <div className="container">
             <MinistryTile
               content={content2.childMarkdownRemark.html}
+              sideList={relatedPeople}
             />
         </div>
       </div>
@@ -53,7 +62,10 @@ query MinistryQuery($title: String!){
         html
       }
     }   
-    
+    leadership{
+      name
+      local
+    }
     content2 {
       childMarkdownRemark{
         html

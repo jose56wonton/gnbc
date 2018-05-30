@@ -14,9 +14,16 @@ h4{
 p,a{
   font-size: .8rem;  
 }
-a{
+a,button{
   color:$green;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  &:hover{
+    color:$dark;
+  }
 }
+
 
 @include tablet{
   h1{
@@ -33,7 +40,7 @@ a{
     font-size: 1.2rem;
   }
 
-  p,a{
+  p,a,button{
     font-size: 1.1rem;
   }
 }
@@ -51,7 +58,7 @@ a{
   h4{
     font-size: 1.2rem;
   }
-  p,a{
+  p,a,button{
     font-size: 1.1rem;
   }
 }
@@ -69,7 +76,7 @@ a{
   h4{
     font-size: 1.4rem;
   }
-  p,a{
+  p,a,button{
     font-size: 1.2rem;
   }
 }

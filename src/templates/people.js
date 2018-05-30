@@ -3,18 +3,35 @@ import React, { Component } from "react";
 import Img from 'gatsby-image';
 import Link from 'gatsby-link';
 import { stringToUrl } from '../utils'
+import CopyToClipboard from 'react-copy-to-clipboard';
+import tippy from 'tippy.js';
 class People extends Component {
-
+  
+  componentDidMount = ()=>{ 
+    tippy("#email",{
+      duration: [300, 300],
+      placement: 'right',
+      trigger: 'click',
+    })
+  }
   render() {
 
-    const { local, name, email, role, image, ministry, description } = this.props.data.contentfulPerson;
+    let { local, name, email, role, image, ministry, description } = this.props.data.contentfulPerson;
     let ministryList = <div></div>;
     if (ministry) {
-      ministryList = ministry.map(min => {
-        return <Link to={`/ministry/${stringToUrl(min.title)}`}>{min.title}</Link>
+
+      ministry = ministry.filter((thing, index, self) =>
+        index === self.findIndex((t) => (
+          t.title === thing.title 
+        ))
+      )
+      
+      ministryList = ministry.map((min,i) => {
+        return <Link key={i*Math.random() * 323} to={`/ministry/${stringToUrl(min.title)}`}>{min.title}</Link>
       }).reduce((prev, curr) => [prev, ', ', curr])
     }
-
+    
+    console.log(ministry)
     return (
       <div className="people">
         <Helmet title={`${local ? "Staff" : "Cross Culture"} - ${name}`} />
@@ -32,7 +49,12 @@ class People extends Component {
               <div className="column is-7">
                 <h2 className="title-1" >{name}</h2>
                 <h4>{role}</h4>
-                {email && <p>Email: <a href={email}>{email}</a></p>}
+                {email && 
+                  <p>Email: 
+                    <CopyToClipboard text={email}>
+                      <button title="Copied!" id="email">{email}</button>    
+                    </CopyToClipboard>
+                  </p>}
                 {ministry && <p>Ministries: {ministryList}  </p>}              
 
                 <div className="people-content" dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }} />

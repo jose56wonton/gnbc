@@ -23,10 +23,13 @@
     "hamburgers": "^0.9.3",
     "moment": "^2.22.1",
     "node-sass": "^4.9.0",
+    "react": "^16.4.0",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-helmet": "^5.2.0",
     "react-player": "^1.6.0",
     "react-rangeslider": "^2.2.0",
-    "sharp": "^0.20.2"
+    "sharp": "^0.20.2",
+    "tippy.js": "^2.5.2"
   },
   "keywords": [
     "gatsby"
