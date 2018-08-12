@@ -25,6 +25,7 @@ class People extends Component {
           t.title === thing.title 
         ))
       )
+      console.log(ministry)
       
       ministryList = ministry.map((min,i) => {
         return <Link key={i*Math.random() * 323} to={`/ministry/${stringToUrl(min.title)}`}>{min.title}</Link>

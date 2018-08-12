@@ -39,7 +39,7 @@ class SideBar extends Component {
               <ul>
                 <SideLink action={this.burgerOrLinkClick} path="/about/staff" text="Staff" classes="primary" />
                 <SideLink action={this.burgerOrLinkClick} path="/about/cross-culture" text="Cross Culture" classes="primary" />
-                <SideLink action={this.burgerOrLinkClick} path="/about/core-values" text="Core Values" classes="primary" />
+                <SideLink action={this.burgerOrLinkClick} path="/about/mission" text="Mission" classes="primary" />
                 <SideLink action={this.burgerOrLinkClick} path="/about/beliefs" text="Beliefs" classes="primary" />
               </ul>
             }

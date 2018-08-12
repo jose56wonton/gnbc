@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import Helmet from "react-helmet";
-import PeopleTile from '../../components/people/peopleTile';
+import PeopleTile from '../../components/about/peopleTile';
 
 class CrossCulture extends Component {
   mapPeopleToTiles = () => {
